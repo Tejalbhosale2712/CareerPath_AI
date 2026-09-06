@@ -168,3 +168,55 @@ The project contains models for:
 
 ```bash
 git clone https://github.com/Tejalbhosale2712/CareerPath_AI.git
+
+### 2. Open the project
+cd CareerPath_AI
+
+### 3. Create and activate virtual environment
+python -m venv venv
+venv\Scripts\activate
+
+### 4. Install dependencies
+pip install django pypdf mysqlclient
+
+### 5. Configure MySQL
+CareerPath/settings.py
+
+### 6. Run migrations
+python manage.py migrate
+
+### 7. Create admin user
+python manage.py createsuperuser
+
+### 8. Run the development server
+python manage.py runserver
+Open:
+  http://127.0.0.1:8000/
+
+# Future Scope
+- Advanced NLP-based resume analysis
+- AI-powered career recommendations
+- Integration with live job portals
+- Real-time job recommendations
+- Improved skill matching using machine learning
+- Course recommendations from online learning platforms
+- Advanced career prediction
+- Resume improvement suggestions
+
+# Project Status
+Completed core Django application with:
+
+- Authentication
+- Resume Analysis
+- Career Role Selection
+- Skill Gap Analysis
+- Job Recommendations
+- Learning Roadmap
+- Dashboard
+- Admin Panel
+
+# Author
+Tejal Bhosale
+
+GitHub:
+https://github.com/Tejalbhosale2712
