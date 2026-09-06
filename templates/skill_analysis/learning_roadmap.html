@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Roadmap - CareerPath AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #1e3a8a;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .welcome {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            background: #dc2626;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background: #b91c1c;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 40px auto;
+        }
+
+        /* ================= HEADER ================= */
+
+        .page-header {
+            background: white;
+            padding: 32px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            color: #1e3a8a;
+            margin: 0 0 18px;
+            font-size: 30px;
+        }
+
+        .page-header p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .target-role {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 9px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* ================= MESSAGE ================= */
+
+        .message {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 18px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #f59e0b;
+        }
+
+        /* ================= ROADMAP ================= */
+
+        .roadmap-title {
+            color: #1e3a8a;
+            margin: 0 0 20px;
+        }
+
+        .roadmap-card {
+            position: relative;
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            margin-bottom: 25px;
+            border-left: 6px solid #2563eb;
+            transition: transform 0.2s ease,
+                        box-shadow 0.2s ease;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+        }
+
+        /* ================= STEP ================= */
+
+        .step {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* ================= SKILL ================= */
+
+        .skill-name {
+            color: #1e3a8a;
+            margin: 5px 0 12px;
+            font-size: 25px;
+        }
+
+        /* ================= LEVEL ================= */
+
+        .level {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #1e3a8a;
+            padding: 7px 13px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ================= TOPIC ================= */
+
+        .topic {
+            font-size: 19px;
+            font-weight: bold;
+            color: #222;
+            margin: 18px 0 10px;
+        }
+
+        /* ================= DESCRIPTION ================= */
+
+        .description {
+            color: #666;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty-card {
+            background: white;
+            padding: 45px 25px;
+            border-radius: 14px;
+            text-align: center;
+            color: #777;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .empty-card h2 {
+            color: #1e3a8a;
+            margin-top: 0;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .buttons {
+            text-align: center;
+            margin: 35px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 6px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #1e40af;
+        }
+
+        .btn-secondary {
+            background: #475569;
+        }
+
+        .btn-secondary:hover {
+            background: #334155;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .welcome {
+                gap: 8px;
+                font-size: 13px;
+            }
+
+            .logout {
+                padding: 8px 12px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 25px auto;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+            .roadmap-card {
+                padding: 24px;
+            }
+
+            .skill-name {
+                font-size: 22px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <div class="navbar">
+
+        <div class="logo">
+            CareerPath AI
+        </div>
+
+        <div class="welcome">
+
+            <span>
+                Welcome, {{ user.username }}
+            </span>
+
+            <a href="{% url 'logout' %}" class="logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <!-- ================= PAGE HEADER ================= -->
+
+        <div class="page-header">
+
+            <h1>
+                📚 Personalized Learning Roadmap
+            </h1>
+
+            {% if target_role %}
+
+                <p>
+                    <strong>Target Career Role:</strong>
+                </p>
+
+                <span class="target-role">
+                    🎯 {{ target_role }}
+                </span>
+
+                <p>
+                    This roadmap is personalized based on the skills
+                    identified as missing in your latest Skill Gap Analysis.
+                    Follow these steps to improve your career readiness.
+                </p>
+
+            {% else %}
+
+                <p>
+                    Build the skills required to achieve your career goal
+                    with a personalized learning path.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ================= MESSAGE ================= -->
+
+        {% if message %}
+
+            <div class="message">
+                ⚠️ {{ message }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- ================= ROADMAP ================= -->
+
+        {% if roadmap %}
+
+            <h2 class="roadmap-title">
+                🚀 Your Learning Path
+            </h2>
+
+
+            {% for item in roadmap %}
+
+                <div class="roadmap-card">
+
+                    <div class="step">
+                        STEP {{ item.order }}
+                    </div>
+
+
+                    <h2 class="skill-name">
+                        {{ item.skill }}
+                    </h2>
+
+
+                    <span class="level">
+                        📈 {{ item.level }}
+                    </span>
+
+
+                    <div class="topic">
+                        📖 {{ item.topic }}
+                    </div>
+
+
+                    <p class="description">
+                        {{ item.description }}
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <!-- ================= EMPTY STATE ================= -->
+
+            <div class="empty-card">
+
+                <h2>
+                    📚 No Learning Roadmap Available
+                </h2>
+
+                <p>
+                    Complete your Skill Gap Analysis first
+                    to generate a personalized learning roadmap.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- ================= NAVIGATION ================= -->
+
+        <div class="buttons">
+
+            <a
+                href="{% url 'skill_gap_analysis' %}"
+                class="btn">
+
+                🎯 Skill Gap Analysis
+
+            </a>
+
+
+            <a
+                href="{% url 'job_recommendations' %}"
+                class="btn">
+
+                💼 Recommended Jobs
+
+            </a>
+
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="btn btn-secondary">
+
+                🏠 Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

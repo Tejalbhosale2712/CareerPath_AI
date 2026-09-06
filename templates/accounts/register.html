@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - CareerPath AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #1e3a8a;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 9px 16px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        .home-link:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 45px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 38px;
+            border-radius: 18px;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 15px;
+            background: #eff6ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+
+        h2 {
+            margin: 0 0 10px;
+            color: #1e3a8a;
+            font-size: 27px;
+        }
+
+        .subtitle {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* ================= FORM ================= */
+
+        form p {
+            margin: 0 0 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #334155;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        /* ================= HELP TEXT ================= */
+
+        .helptext {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        ul.helptext {
+            padding-left: 18px;
+        }
+
+        /* ================= ERRORS ================= */
+
+        .errorlist {
+            color: #dc2626;
+            font-size: 13px;
+            margin: 5px 0 10px;
+            padding-left: 18px;
+        }
+
+        /* ================= BUTTON ================= */
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* ================= LOGIN ================= */
+
+        .login {
+            text-align: center;
+            margin-top: 25px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .login a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .container {
+                padding: 28px 22px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <div class="navbar">
+
+        <div class="logo">
+            CareerPath AI
+        </div>
+
+        <a href="{% url 'home' %}" class="home-link">
+            🏠 Home
+        </a>
+
+    </div>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="main">
+
+        <div class="container">
+
+            <!-- Header -->
+
+            <div class="header">
+
+                <div class="icon">
+                    📝
+                </div>
+
+                <h2>
+                    Create Your Account
+                </h2>
+
+                <p class="subtitle">
+                    Join CareerPath AI and start building your personalized career journey.
+                </p>
+
+            </div>
+
+
+            <!-- Registration Form -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit">
+                    Create Account →
+                </button>
+
+            </form>
+
+
+            <!-- Login -->
+
+            <div class="login">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}">
+                    Login here
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="footer">
+
+        © 2026 CareerPath AI | AI-Powered Career Guidance System
+
+    </div>
+
+</body>
+
+</html>

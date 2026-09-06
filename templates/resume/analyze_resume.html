@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis - CareerPath AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #1e3a8a;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .welcome {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 15px;
+        }
+
+        .logout {
+            color: white;
+            text-decoration: none;
+            background: #dc2626;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .logout:hover {
+            background: #b91c1c;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: 40px auto;
+        }
+
+        /* ================= HEADER ================= */
+
+        .hero {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+            margin-bottom: 25px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .hero h1 {
+            margin: 0 0 10px;
+            color: #1e3a8a;
+            font-size: 30px;
+        }
+
+        .hero p {
+            margin: 8px 0;
+            color: #64748b;
+        }
+
+        .resume-name {
+            color: #2563eb;
+            font-weight: bold;
+            word-break: break-word;
+        }
+
+        /* ================= SUMMARY ================= */
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 22px;
+            border-radius: 13px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .summary-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .summary-number {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+
+        .summary-label {
+            color: #64748b;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            background: white;
+            padding: 28px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            color: #1e3a8a;
+            margin: 0;
+            font-size: 22px;
+        }
+
+        /* ================= SKILLS ================= */
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .skill {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 9px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* ================= ITEMS ================= */
+
+        .item {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 14px 16px;
+            margin: 10px 0;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+            color: #94a3b8;
+            font-style: italic;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* ================= RESUME TEXT ================= */
+
+        .resume-text {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            text-align: left;
+            max-height: 450px;
+            overflow-y: auto;
+            line-height: 1.7;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .buttons {
+            text-align: center;
+            margin: 35px 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 13px 22px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #475569;
+        }
+
+        .btn-secondary:hover {
+            background: #334155;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 800px) {
+
+            .summary {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .welcome {
+                gap: 8px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .welcome {
+                flex-direction: column;
+            }
+
+            .section,
+            .hero {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <div class="navbar">
+
+        <div class="logo">
+            CareerPath AI
+        </div>
+
+        <div class="welcome">
+
+            <span>
+                Welcome, {{ user.username }}
+            </span>
+
+            <a href="{% url 'logout' %}" class="logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="container">
+
+
+        <!-- Resume Header -->
+
+        <div class="hero">
+
+            <h1>
+                🤖 AI Resume Analysis
+            </h1>
+
+            <p>
+                Your resume has been analyzed using CareerPath AI.
+            </p>
+
+            <p>
+                <strong>Resume:</strong>
+                <span class="resume-name">
+                    {{ resume.file.name }}
+                </span>
+            </p>
+
+            <p>
+                <strong>Uploaded:</strong>
+                {{ resume.uploaded_at }}
+            </p>
+
+        </div>
+
+
+        <!-- ================= SUMMARY ================= -->
+
+        <div class="summary">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🛠️
+                </div>
+
+                <div class="summary-number">
+                    {{ skills|length }}
+                </div>
+
+                <div class="summary-label">
+                    Skills Detected
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🎓
+                </div>
+
+                <div class="summary-number">
+                    {{ education|length }}
+                </div>
+
+                <div class="summary-label">
+                    Education Details
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📁
+                </div>
+
+                <div class="summary-number">
+                    {{ projects|length }}
+                </div>
+
+                <div class="summary-label">
+                    Projects Detected
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SKILLS ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <span>🛠️</span>
+
+                <h2>
+                    Skills Detected
+                </h2>
+
+            </div>
+
+            {% if skills %}
+
+                <div class="skills-container">
+
+                    {% for skill in skills %}
+
+                        <span class="skill">
+                            {{ skill }}
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <p class="empty">
+                    No known skills were detected in this resume.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ================= EDUCATION ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <span>🎓</span>
+
+                <h2>
+                    Education
+                </h2>
+
+            </div>
+
+            {% if education %}
+
+                {% for item in education %}
+
+                    <div class="item">
+                        {{ item }}
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="empty">
+                    No education information detected.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ================= EXPERIENCE ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <span>💼</span>
+
+                <h2>
+                    Experience
+                </h2>
+
+            </div>
+
+            {% if experience %}
+
+                {% for item in experience %}
+
+                    <div class="item">
+                        {{ item }}
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="empty">
+                    No experience information detected.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ================= PROJECTS ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <span>📁</span>
+
+                <h2>
+                    Projects
+                </h2>
+
+            </div>
+
+            {% if projects %}
+
+                {% for item in projects %}
+
+                    <div class="item">
+                        {{ item }}
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="empty">
+                    No project information detected.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ================= CERTIFICATIONS ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <span>📜</span>
+
+                <h2>
+                    Certifications
+                </h2>
+
+            </div>
+
+            {% if certifications %}
+
+                {% for item in certifications %}
+
+                    <div class="item">
+                        {{ item }}
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="empty">
+                    No certification information detected.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ================= FULL RESUME TEXT ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <span>📋</span>
+
+                <h2>
+                    Extracted Resume Text
+                </h2>
+
+            </div>
+
+            <div class="resume-text">
+                {{ resume_text }}
+            </div>
+
+        </div>
+
+
+        <!-- ================= BUTTONS ================= -->
+
+        <div class="buttons">
+
+            <a href="{% url 'upload_resume' %}" class="btn btn-secondary">
+                ← Back to Resume
+            </a>
+
+            <a href="{% url 'dashboard' %}" class="btn">
+                🏠 Dashboard
+            </a>
+
+            <a href="{% url 'skill_gap_analysis' %}" class="btn">
+                📊 Skill Gap Analysis
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="footer">
+
+        © 2026 CareerPath AI | AI-Powered Career Guidance System
+
+    </div>
+
+</body>
+
+</html>

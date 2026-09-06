@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Select Career Role - CareerPath AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #1e3a8a;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 9px 15px;
+            border-radius: 7px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 55px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 18px;
+            background: #eff6ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 34px;
+        }
+
+        h1 {
+            color: #1e3a8a;
+            margin: 0 0 12px;
+            font-size: 30px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* ================= INFO ================= */
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 16px 18px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            color: #1e3a8a;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            color: #334155;
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 16px;
+            background: white;
+            color: #334155;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        /* ================= BUTTON ================= */
+
+        .button-area {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* ================= STEPS ================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .step {
+            text-align: center;
+            background: #f8fafc;
+            padding: 18px 10px;
+            border-radius: 10px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 8px;
+            background: #2563eb;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        /* ================= FOOTER ================= */
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 23px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 35px auto;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <div class="navbar">
+
+        <div class="logo">
+            CareerPath AI
+        </div>
+
+        <a href="{% url 'dashboard' %}" class="nav-link">
+            🏠 Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="container">
+
+        <div class="card">
+
+            <!-- Header -->
+
+            <div class="header">
+
+                <div class="icon">
+                    🎯
+                </div>
+
+                <h1>
+                    Select Your Target Career
+                </h1>
+
+                <p class="subtitle">
+                    Choose the job role you want to pursue.
+                    CareerPath AI will compare your resume skills
+                    with the requirements of your selected role.
+                </p>
+
+            </div>
+
+
+            <!-- Information -->
+
+            <div class="info-box">
+
+                <strong>Why select a target role?</strong><br>
+
+                Your selected role will be used to generate your
+                <strong>Skill Gap Analysis</strong>,
+                <strong>Job Recommendations</strong>, and
+                <strong>Learning Roadmap</strong>.
+
+            </div>
+
+
+            <!-- Form -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+
+                    <label class="form-label">
+                        💼 Select Target Job Role
+                    </label>
+
+                    {{ form.target_role }}
+
+                </div>
+
+
+                <div class="button-area">
+
+                    <button type="submit" class="btn">
+                        Continue to Analysis →
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- Process Steps -->
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div class="step-title">
+                        Select Career
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div class="step-title">
+                        Analyze Skills
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div class="step-title">
+                        Get Career Roadmap
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <div class="footer">
+
+        © 2026 CareerPath AI | AI-Powered Career Guidance System
+
+    </div>
+
+</body>
+
+</html>
