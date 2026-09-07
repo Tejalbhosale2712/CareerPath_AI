@@ -4,271 +4,666 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Learning Roadmap - CareerPath AI</title>
+    <title>Learning Roadmap | CareerPath AI</title>
 
     <style>
 
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #333;
+            background: #f7f9fc;
+            color: #172033;
         }
 
-        /* ================= NAVBAR ================= */
+        a {
+            text-decoration: none;
+        }
 
-        .navbar {
-            background: #1e3a8a;
-            color: white;
-            padding: 18px 6%;
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid #e7ebf2;
+            padding: 28px 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            z-index: 10;
         }
 
-        .logo {
-            font-size: 26px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
             font-weight: bold;
         }
 
-        .welcome {
+        .brand h2 {
+            font-size: 20px;
+        }
+
+        .brand span {
+            color: #2563eb;
+        }
+
+        .nav-title {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin-bottom: 12px;
+        }
+
+        .nav-item {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 13px;
+            padding: 13px 14px;
+            margin-bottom: 5px;
+            border-radius: 11px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .nav-item:hover {
+            background: #f1f5ff;
+            color: #2563eb;
+        }
+
+        .nav-item.active {
+            background: #eef4ff;
+            color: #2563eb;
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile-mini {
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 13px;
+            padding: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .profile-mini strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .profile-mini small {
+            color: #94a3b8;
+            font-size: 11px;
         }
 
         .logout {
-            color: white;
-            text-decoration: none;
-            background: #dc2626;
-            padding: 10px 18px;
-            border-radius: 7px;
-            font-weight: bold;
-        }
-
-        .logout:hover {
-            background: #b91c1c;
-        }
-
-        /* ================= CONTAINER ================= */
-
-        .container {
-            width: 90%;
-            max-width: 1050px;
-            margin: 40px auto;
-        }
-
-        /* ================= HEADER ================= */
-
-        .page-header {
-            background: white;
-            padding: 32px;
-            border-radius: 14px;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
-            margin-bottom: 28px;
-        }
-
-        .page-header h1 {
-            color: #1e3a8a;
-            margin: 0 0 18px;
-            font-size: 30px;
-        }
-
-        .page-header p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .target-role {
-            display: inline-block;
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 9px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-
-        /* ================= MESSAGE ================= */
-
-        .message {
-            background: #fef3c7;
-            color: #92400e;
-            padding: 18px 20px;
+            display: block;
+            text-align: center;
+            padding: 11px;
             border-radius: 10px;
-            margin-bottom: 25px;
-            border-left: 5px solid #f59e0b;
-        }
-
-        /* ================= ROADMAP ================= */
-
-        .roadmap-title {
-            color: #1e3a8a;
-            margin: 0 0 20px;
-        }
-
-        .roadmap-card {
-            position: relative;
-            background: white;
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
-            margin-bottom: 25px;
-            border-left: 6px solid #2563eb;
-            transition: transform 0.2s ease,
-                        box-shadow 0.2s ease;
-        }
-
-        .roadmap-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
-        }
-
-        /* ================= STEP ================= */
-
-        .step {
-            display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-
-        /* ================= SKILL ================= */
-
-        .skill-name {
-            color: #1e3a8a;
-            margin: 5px 0 12px;
-            font-size: 25px;
-        }
-
-        /* ================= LEVEL ================= */
-
-        .level {
-            display: inline-block;
-            background: #e0e7ff;
-            color: #1e3a8a;
-            padding: 7px 13px;
-            border-radius: 15px;
+            background: #fff1f2;
+            color: #e11d48;
             font-size: 13px;
             font-weight: bold;
         }
 
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 30px 40px;
+        }
+
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .topbar h1 {
+            font-size: 27px;
+            margin-bottom: 6px;
+        }
+
+        .topbar p {
+            color: #7b8798;
+            font-size: 14px;
+        }
+
+        .user-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: linear-gradient(120deg, #172554, #2563eb 65%, #4f46e5);
+            border-radius: 20px;
+            padding: 32px;
+            color: white;
+            margin-bottom: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            right: 20px;
+            top: -190px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            opacity: 0.75;
+            margin-bottom: 9px;
+        }
+
+        .hero h2 {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.88;
+        }
+
+
+        /* ================= TARGET CARD ================= */
+
+        .target-card {
+            background: white;
+            border: 1px solid #e7ebf2;
+            border-radius: 15px;
+            padding: 19px 22px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .target-left {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .target-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .target-label {
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .target-role {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .roadmap-count {
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            color: #64748b;
+            padding: 9px 13px;
+            border-radius: 9px;
+            font-size: 12px;
+        }
+
+
+        /* ================= MESSAGE ================= */
+
+        .message {
+            background: #fffbeb;
+            color: #92400e;
+            border: 1px solid #fde68a;
+            border-left: 4px solid #f59e0b;
+            padding: 17px 20px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        /* ================= SECTION HEADER ================= */
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            color: #172554;
+        }
+
+        .section-header p {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+
+        /* ================= ROADMAP ================= */
+
+        .roadmap {
+            position: relative;
+        }
+
+        .roadmap::before {
+            content: "";
+            position: absolute;
+            left: 27px;
+            top: 30px;
+            bottom: 30px;
+            width: 2px;
+            background: #dbe4f4;
+        }
+
+        .roadmap-card {
+            position: relative;
+            margin-bottom: 18px;
+            padding-left: 72px;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 22px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 15px;
+            z-index: 2;
+            border: 5px solid #f7f9fc;
+        }
+
+        .roadmap-content {
+            background: white;
+            border: 1px solid #e7ebf2;
+            border-radius: 17px;
+            padding: 24px;
+            transition: 0.25s;
+        }
+
+        .roadmap-content:hover {
+            transform: translateX(3px);
+            box-shadow: 0 10px 28px rgba(30, 64, 175, 0.08);
+            border-color: #d7e2ff;
+        }
+
+
+        /* ================= ROADMAP HEADER ================= */
+
+        .roadmap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .step-label {
+            color: #2563eb;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 7px;
+        }
+
+        .skill-name {
+            font-size: 21px;
+            color: #172554;
+            margin-bottom: 8px;
+        }
+
+        .level {
+            display: inline-block;
+            padding: 7px 11px;
+            border-radius: 8px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .roadmap-badge {
+            background: #f8fafc;
+            color: #64748b;
+            border: 1px solid #edf0f5;
+            padding: 8px 11px;
+            border-radius: 9px;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+
         /* ================= TOPIC ================= */
 
-        .topic {
-            font-size: 19px;
-            font-weight: bold;
-            color: #222;
-            margin: 18px 0 10px;
+        .topic-box {
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 11px;
+            padding: 14px;
+            margin-top: 18px;
         }
+
+        .topic-label {
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 6px;
+        }
+
+        .topic {
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
 
         /* ================= DESCRIPTION ================= */
 
         .description {
-            color: #666;
+            color: #64748b;
+            font-size: 13px;
             line-height: 1.7;
-            margin: 0;
+            margin-top: 14px;
         }
+
 
         /* ================= EMPTY ================= */
 
         .empty-card {
             background: white;
-            padding: 45px 25px;
-            border-radius: 14px;
+            border: 1px solid #e7ebf2;
+            border-radius: 18px;
+            padding: 55px 25px;
             text-align: center;
-            color: #777;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .empty-icon {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 28px;
         }
 
         .empty-card h2 {
-            color: #1e3a8a;
-            margin-top: 0;
+            color: #172554;
+            font-size: 20px;
+            margin-bottom: 9px;
         }
 
-        /* ================= BUTTONS ================= */
+        .empty-card p {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.6;
+        }
 
-        .buttons {
+
+        /* ================= NAVIGATION ================= */
+
+        .navigation {
+            background: white;
+            border: 1px solid #e7ebf2;
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 25px;
             text-align: center;
-            margin: 35px 0;
+        }
+
+        .navigation h3 {
+            font-size: 16px;
+            color: #172554;
+            margin-bottom: 7px;
+        }
+
+        .navigation p {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 16px;
         }
 
         .btn {
             display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            margin: 6px;
+            padding: 11px 17px;
+            border-radius: 10px;
+            margin: 4px;
+            font-size: 12px;
             font-weight: bold;
+            transition: 0.25s;
         }
 
-        .btn:hover {
-            background: #1e40af;
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-purple {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .btn-purple:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: #475569;
+            background: #f1f5f9;
+            color: #475569;
         }
 
         .btn-secondary:hover {
-            background: #334155;
+            background: #e2e8f0;
         }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            color: #9aa5b5;
+            font-size: 11px;
+            padding: 28px 0 5px;
+        }
+
 
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 800px) {
 
-            .navbar {
-                padding: 15px 20px;
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
             }
 
-            .logo {
+            .brand {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .brand h2,
+            .nav-title,
+            .nav-item span,
+            .profile-mini,
+            .logout {
+                display: none;
+            }
+
+            .nav-item {
+                justify-content: center;
+            }
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 25px 20px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .topbar h1 {
                 font-size: 22px;
             }
 
-            .welcome {
-                gap: 8px;
-                font-size: 13px;
+            .hero {
+                padding: 25px;
             }
 
-            .logout {
-                padding: 8px 12px;
+            .hero h2 {
+                font-size: 22px;
             }
 
-            .container {
-                width: 92%;
-                margin: 25px auto;
+            .target-card {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
-            .page-header h1 {
-                font-size: 25px;
+            .roadmap::before {
+                left: 21px;
             }
 
             .roadmap-card {
-                padding: 24px;
+                padding-left: 55px;
             }
 
-            .skill-name {
-                font-size: 22px;
+            .step-number {
+                width: 43px;
+                height: 43px;
+                font-size: 12px;
+            }
+
+            .roadmap-content {
+                padding: 19px;
+            }
+
+            .roadmap-header {
+                flex-direction: column;
             }
 
             .btn {
                 display: block;
-                margin: 10px 0;
-                text-align: center;
+                margin: 8px 0;
             }
+
         }
 
     </style>
@@ -278,173 +673,409 @@
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
 
-    <div class="navbar">
+<!-- ================= SIDEBAR ================= -->
 
-        <div class="logo">
-            CareerPath AI
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            C
         </div>
 
-        <div class="welcome">
+        <h2>
+            Career<span>Path</span>
+        </h2>
 
-            <span>
-                Welcome, {{ user.username }}
-            </span>
+    </div>
 
-            <a href="{% url 'logout' %}" class="logout">
-                Logout
-            </a>
 
+    <div class="nav-title">
+        MAIN MENU
+    </div>
+
+
+    <a href="{% url 'dashboard' %}" class="nav-item">
+
+        <div class="nav-icon">⌂</div>
+
+        <span>Dashboard</span>
+
+    </a>
+
+
+    <a href="{% url 'upload_resume' %}" class="nav-item">
+
+        <div class="nav-icon">📄</div>
+
+        <span>Resume Analysis</span>
+
+    </a>
+
+
+    <a href="{% url 'select_role' %}" class="nav-item">
+
+        <div class="nav-icon">🎯</div>
+
+        <span>Career Role</span>
+
+    </a>
+
+
+    <a href="{% url 'skill_gap_analysis' %}" class="nav-item">
+
+        <div class="nav-icon">📊</div>
+
+        <span>Skill Gap</span>
+
+    </a>
+
+
+    <a href="{% url 'job_recommendations' %}" class="nav-item">
+
+        <div class="nav-icon">💼</div>
+
+        <span>Job Recommendations</span>
+
+    </a>
+
+
+    <a href="{% url 'learning_roadmap' %}" class="nav-item active">
+
+        <div class="nav-icon">📚</div>
+
+        <span>Learning Roadmap</span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="profile-mini">
+
+            <div class="avatar">
+                {{ user.username|first|upper }}
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ user.username }}
+                </strong>
+
+                <small>
+                    Career Explorer
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'logout' %}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>
+                Learning Roadmap
+            </h1>
+
+            <p>
+                Build the skills you need to reach your target career.
+            </p>
+
+        </div>
+
+
+        <div class="user-circle">
+            {{ user.username|first|upper }}
         </div>
 
     </div>
 
 
-    <div class="container">
 
-        <!-- ================= PAGE HEADER ================= -->
+    <!-- ================= HERO ================= -->
 
-        <div class="page-header">
+    <section class="hero">
 
-            <h1>
-                📚 Personalized Learning Roadmap
-            </h1>
+        <div class="hero-content">
 
-            {% if target_role %}
+            <div class="hero-label">
+                PERSONALIZED LEARNING PLAN
+            </div>
 
-                <p>
-                    <strong>Target Career Role:</strong>
-                </p>
+            <h2>
+                Turn your skill gaps into a clear learning path
+            </h2>
 
-                <span class="target-role">
-                    🎯 {{ target_role }}
-                </span>
+            <p>
+                Your roadmap is generated from the skills identified as
+                missing in your latest Skill Gap Analysis. Follow each step
+                to gradually improve your career readiness.
+            </p>
 
-                <p>
-                    This roadmap is personalized based on the skills
-                    identified as missing in your latest Skill Gap Analysis.
-                    Follow these steps to improve your career readiness.
-                </p>
+        </div>
 
-            {% else %}
+    </section>
 
-                <p>
-                    Build the skills required to achieve your career goal
-                    with a personalized learning path.
-                </p>
+
+
+    <!-- ================= TARGET ROLE ================= -->
+
+    {% if target_role %}
+
+        <div class="target-card">
+
+            <div class="target-left">
+
+                <div class="target-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <div class="target-label">
+                        TARGET CAREER
+                    </div>
+
+                    <div class="target-role">
+                        {{ target_role }}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            {% if roadmap %}
+
+                <div class="roadmap-count">
+                    {{ roadmap|length }} learning steps
+                </div>
 
             {% endif %}
 
         </div>
 
+    {% endif %}
 
-        <!-- ================= MESSAGE ================= -->
 
-        {% if message %}
 
-            <div class="message">
-                ⚠️ {{ message }}
+    <!-- ================= MESSAGE ================= -->
+
+    {% if message %}
+
+        <div class="message">
+
+            ⚠️ {{ message }}
+
+        </div>
+
+    {% endif %}
+
+
+
+    <!-- ================= ROADMAP ================= -->
+
+    {% if roadmap %}
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    🚀 Your Learning Path
+                </h2>
+
+                <p>
+                    Follow the steps in order for better results.
+                </p>
+
             </div>
 
-        {% endif %}
+        </div>
 
 
-        <!-- ================= ROADMAP ================= -->
-
-        {% if roadmap %}
-
-            <h2 class="roadmap-title">
-                🚀 Your Learning Path
-            </h2>
+        <div class="roadmap">
 
 
             {% for item in roadmap %}
 
                 <div class="roadmap-card">
 
-                    <div class="step">
-                        STEP {{ item.order }}
+
+                    <!-- STEP NUMBER -->
+
+                    <div class="step-number">
+
+                        {{ item.order }}
+
                     </div>
 
 
-                    <h2 class="skill-name">
-                        {{ item.skill }}
-                    </h2>
+                    <!-- CARD -->
+
+                    <div class="roadmap-content">
 
 
-                    <span class="level">
-                        📈 {{ item.level }}
-                    </span>
+                        <div class="roadmap-header">
+
+                            <div>
+
+                                <div class="step-label">
+                                    STEP {{ item.order }}
+                                </div>
+
+                                <h2 class="skill-name">
+                                    {{ item.skill }}
+                                </h2>
+
+                                <span class="level">
+                                    📈 {{ item.level }}
+                                </span>
+
+                            </div>
 
 
-                    <div class="topic">
-                        📖 {{ item.topic }}
+                            <div class="roadmap-badge">
+                                Learning Module
+                            </div>
+
+                        </div>
+
+
+                        <!-- TOPIC -->
+
+                        <div class="topic-box">
+
+                            <div class="topic-label">
+                                Focus Topic
+                            </div>
+
+                            <div class="topic">
+                                📖 {{ item.topic }}
+                            </div>
+
+                        </div>
+
+
+                        <!-- DESCRIPTION -->
+
+                        <p class="description">
+
+                            {{ item.description }}
+
+                        </p>
+
+
                     </div>
-
-
-                    <p class="description">
-                        {{ item.description }}
-                    </p>
 
                 </div>
 
             {% endfor %}
 
 
-        {% else %}
+        </div>
 
-            <!-- ================= EMPTY STATE ================= -->
 
-            <div class="empty-card">
+    {% else %}
 
-                <h2>
-                    📚 No Learning Roadmap Available
-                </h2>
 
-                <p>
-                    Complete your Skill Gap Analysis first
-                    to generate a personalized learning roadmap.
-                </p>
+        <!-- ================= EMPTY STATE ================= -->
 
+        <div class="empty-card">
+
+            <div class="empty-icon">
+                📚
             </div>
 
-        {% endif %}
+            <h2>
+                No Learning Roadmap Available
+            </h2>
 
-
-        <!-- ================= NAVIGATION ================= -->
-
-        <div class="buttons">
-
-            <a
-                href="{% url 'skill_gap_analysis' %}"
-                class="btn">
-
-                🎯 Skill Gap Analysis
-
-            </a>
-
-
-            <a
-                href="{% url 'job_recommendations' %}"
-                class="btn">
-
-                💼 Recommended Jobs
-
-            </a>
-
-
-            <a
-                href="{% url 'dashboard' %}"
-                class="btn btn-secondary">
-
-                🏠 Dashboard
-
-            </a>
+            <p>
+                Complete your Skill Gap Analysis first to generate
+                a personalized learning roadmap.
+            </p>
 
         </div>
 
+
+    {% endif %}
+
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <div class="navigation">
+
+        <h3>
+            🚀 Continue Your Career Journey
+        </h3>
+
+        <p>
+            Review your skill gaps, explore jobs, or return to your dashboard.
+        </p>
+
+
+        <a
+            href="{% url 'skill_gap_analysis' %}"
+            class="btn btn-primary">
+
+            🎯 Skill Gap Analysis
+
+        </a>
+
+
+        <a
+            href="{% url 'job_recommendations' %}"
+            class="btn btn-purple">
+
+            💼 Recommended Jobs
+
+        </a>
+
+
+        <a
+            href="{% url 'dashboard' %}"
+            class="btn btn-secondary">
+
+            🏠 Dashboard
+
+        </a>
+
     </div>
+
+
+
+    <footer>
+
+        © 2026 CareerPath AI · Personalized Career Development
+
+    </footer>
+
+
+</main>
+
 
 </body>
 

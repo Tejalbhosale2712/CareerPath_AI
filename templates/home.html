@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CareerPath AI</title>
+    <title>CareerPath AI | Build Your Future</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -18,189 +14,429 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Inter, Arial, sans-serif;
             background: #f8fafc;
-            color: #1e293b;
+            color: #0f172a;
+            line-height: 1.6;
         }
 
+        a {
+            text-decoration: none;
+        }
 
         /* ================= NAVBAR ================= */
 
         nav {
-            background: #1e3a8a;
-            padding: 20px 8%;
+            height: 76px;
+            padding: 0 7%;
+            background: rgba(255,255,255,0.95);
 
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5
+            );
+
             color: white;
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: #2563eb;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
+            gap: 30px;
         }
 
         .nav-links a {
-            color: white;
-            text-decoration: none;
-
-            margin-left: 30px;
-
-            font-size: 18px;
+            color: #475569;
+            font-size: 15px;
             font-weight: 600;
 
-            transition: 0.3s;
+            transition: 0.25s;
         }
 
         .nav-links a:hover {
-            color: #bfdbfe;
+            color: #2563eb;
         }
 
+        .nav-login {
+            padding: 10px 18px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+        }
+
+        .nav-register {
+            padding: 11px 20px;
+            border-radius: 9px;
+
+            color: white !important;
+
+            background: #2563eb;
+        }
+
+        .nav-register:hover {
+            background: #1d4ed8;
+        }
 
         /* ================= HERO ================= */
 
         .hero {
-            min-height: 520px;
+            min-height: 650px;
+
+            padding: 80px 7%;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 70px;
 
-            padding: 70px 8%;
-
-            background: linear-gradient(
-                135deg,
-                #eff6ff,
-                #ffffff
-            );
+            background:
+                radial-gradient(
+                    circle at 80% 20%,
+                    #dbeafe 0,
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f8fbff,
+                    #ffffff
+                );
         }
 
         .hero-content {
-            max-width: 600px;
+            max-width: 650px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background: #eff6ff;
+            color: #2563eb;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            border: 1px solid #dbeafe;
+
+            margin-bottom: 22px;
         }
 
         .hero h1 {
-            font-size: 52px;
-            color: #1e3a8a;
-            margin-bottom: 20px;
+            font-size: clamp(42px, 5vw, 68px);
+            line-height: 1.08;
+
+            letter-spacing: -2px;
+
+            color: #0f172a;
+
+            margin-bottom: 22px;
         }
 
-        .hero h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
+        .hero h1 span {
+            color: #2563eb;
         }
 
-        .hero p {
+        .hero-description {
             font-size: 18px;
-            line-height: 1.7;
-
             color: #64748b;
 
-            margin-bottom: 30px;
+            max-width: 590px;
+
+            margin-bottom: 32px;
         }
 
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 14px;
 
-        /* ================= BUTTONS ================= */
+            margin-bottom: 35px;
+        }
 
         .btn {
-            display: inline-block;
+            padding: 14px 24px;
 
-            padding: 14px 25px;
+            border-radius: 10px;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            color: white;
 
             background: #2563eb;
 
-            color: white;
-
-            text-decoration: none;
-
-            border-radius: 8px;
-
-            font-weight: bold;
-
-            margin-right: 10px;
-
-            transition: 0.3s;
+            box-shadow:
+                0 8px 20px rgba(37,99,235,0.22);
         }
 
-        .btn:hover {
+        .btn-primary:hover {
             background: #1d4ed8;
+            transform: translateY(-2px);
         }
 
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #1e293b;
-        }
+        .btn-outline {
+            color: #334155;
 
-        .btn-secondary:hover {
-            background: #cbd5e1;
-        }
-
-
-        /* ================= HERO CARD ================= */
-
-        .hero-card {
             background: white;
 
-            width: 350px;
-
-            padding: 35px;
-
-            border-radius: 20px;
-
-            box-shadow:
-                0 10px 30px rgba(0,0,0,0.1);
-
-            text-align: center;
+            border: 1px solid #cbd5e1;
         }
 
-        .hero-card h3 {
-            color: #1e3a8a;
-
-            margin-bottom: 20px;
-
-            font-size: 24px;
+        .btn-outline:hover {
+            border-color: #2563eb;
+            color: #2563eb;
         }
 
-        .step {
-            padding: 14px;
+        .trust-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
-            margin: 10px 0;
-
-            background: #eff6ff;
-
-            border-radius: 8px;
-
-            font-weight: 500;
-        }
-
-
-        /* ================= FEATURES ================= */
-
-        .features {
-            padding: 70px 8%;
-
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 35px;
-
-            color: #1e3a8a;
-
-            margin-bottom: 15px;
-        }
-
-        .features > p {
             color: #64748b;
 
-            margin-bottom: 40px;
+            font-size: 13px;
         }
+
+        .trust-icon {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        /* ================= HERO DASHBOARD ================= */
+
+        .hero-visual {
+            width: 500px;
+            max-width: 100%;
+
+            position: relative;
+        }
+
+        .dashboard-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 22px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 25px 60px rgba(15,23,42,0.12);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .online {
+            font-size: 12px;
+            color: #16a34a;
+
+            background: #f0fdf4;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+        }
+
+        .score-area {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background: #f8fafc;
+
+            margin-bottom: 18px;
+        }
+
+        .score-circle {
+            width: 105px;
+            height: 105px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background:
+                conic-gradient(
+                    #2563eb 0 78%,
+                    #dbeafe 78% 100%
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-inner {
+            width: 82px;
+            height: 82px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+        }
+
+        .score-number {
+            font-size: 23px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .score-label {
+            font-size: 10px;
+            color: #64748b;
+        }
+
+        .score-text h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .score-text p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .mini-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .mini-item {
+            padding: 15px;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            background: white;
+        }
+
+        .mini-icon {
+            font-size: 20px;
+            margin-bottom: 7px;
+        }
+
+        .mini-item strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .mini-item small {
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            padding: 90px 7%;
+        }
+
+        .section-heading {
+            max-width: 650px;
+            margin: 0 auto 50px;
+
+            text-align: center;
+        }
+
+        .section-label {
+            color: #2563eb;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+
+            margin-bottom: 10px;
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
+            line-height: 1.2;
+
+            color: #0f172a;
+
+            margin-bottom: 14px;
+        }
+
+        .section-heading p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        /* ================= FEATURES ================= */
 
         .feature-container {
             display: grid;
@@ -208,76 +444,109 @@
             grid-template-columns:
                 repeat(3, 1fr);
 
-            gap: 25px;
+            gap: 20px;
         }
-
-
-        /* CLICKABLE FEATURE CARD */
 
         .feature-card {
             background: white;
 
-            padding: 30px;
+            padding: 28px;
 
-            border-radius: 15px;
+            border: 1px solid #e2e8f0;
 
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.07);
+            border-radius: 17px;
 
-            text-decoration: none;
+            transition: 0.3s;
 
-            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
 
-            display: block;
+        .feature-card::before {
+            content: "";
 
-            cursor: pointer;
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background: #2563eb;
+
+            transform: scaleX(0);
+
+            transform-origin: left;
 
             transition: 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-5px);
+
+            border-color: #bfdbfe;
 
             box-shadow:
-                0 10px 25px rgba(0,0,0,0.15);
+                0 15px 35px rgba(15,23,42,0.08);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eff6ff;
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
         }
 
         .feature-card h3 {
-            margin: 15px 0;
-
-            color: #1e3a8a;
+            font-size: 18px;
+            margin-bottom: 9px;
         }
 
         .feature-card p {
             color: #64748b;
-
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.7;
         }
 
-        .icon {
-            font-size: 40px;
-        }
+        .feature-link {
+            display: inline-block;
 
+            margin-top: 18px;
+
+            color: #2563eb;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
 
         /* ================= HOW IT WORKS ================= */
 
-        .how-it-works {
-            padding: 70px 8%;
-
-            background: #eff6ff;
-
-            text-align: center;
-        }
-
-        .how-it-works h2 {
-            color: #1e3a8a;
-
-            font-size: 35px;
-
-            margin-bottom: 40px;
+        .how-section {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .steps {
+            max-width: 1100px;
+
+            margin: auto;
+
             display: grid;
 
             grid-template-columns:
@@ -289,121 +558,257 @@
         .step-box {
             background: white;
 
-            padding: 25px 15px;
+            border: 1px solid #e2e8f0;
 
-            border-radius: 12px;
+            padding: 25px 18px;
+
+            border-radius: 15px;
+
+            text-align: center;
         }
 
         .step-number {
-            width: 40px;
+            width: 42px;
+            height: 42px;
 
-            height: 40px;
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
 
             background: #2563eb;
 
             color: white;
 
-            border-radius: 50%;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
-            margin: auto;
-
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .step-box h3 {
-            margin: 15px 0 8px;
-
-            font-size: 17px;
+            font-size: 15px;
+            margin-bottom: 7px;
         }
 
         .step-box p {
+            font-size: 12px;
             color: #64748b;
-
-            font-size: 14px;
         }
 
+        /* ================= CTA ================= */
 
-        /* ================= FOOTER ================= */
+        .cta {
+            padding: 80px 7%;
+        }
 
-        footer {
-            background: #1e293b;
+        .cta-box {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 55px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1d4ed8,
+                    #4338ca
+                );
 
             color: white;
 
             text-align: center;
 
-            padding: 25px;
+            box-shadow:
+                0 25px 50px rgba(37,99,235,0.22);
         }
 
+        .cta-box h2 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: #dbeafe;
+
+            max-width: 600px;
+
+            margin: 0 auto 25px;
+
+            font-size: 15px;
+        }
+
+        .cta-button {
+            display: inline-block;
+
+            padding: 13px 24px;
+
+            border-radius: 9px;
+
+            background: white;
+            color: #1d4ed8;
+
+            font-weight: 800;
+
+            font-size: 14px;
+        }
+
+        .cta-button:hover {
+            background: #eff6ff;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #0f172a;
+
+            color: #cbd5e1;
+
+            padding: 35px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-brand span {
+            color: #60a5fa;
+        }
+
+        footer p {
+            font-size: 12px;
+        }
 
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
 
             .hero {
                 flex-direction: column;
-
                 text-align: center;
+            }
 
-                gap: 40px;
+            .hero-content {
+                max-width: 750px;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons,
+            .trust-line {
+                justify-content: center;
             }
 
             .feature-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                height: auto;
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 60px 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .mini-items {
                 grid-template-columns: 1fr;
             }
 
+            .feature-container,
             .steps {
                 grid-template-columns: 1fr;
             }
 
-        }
-
-
-        @media (max-width: 600px) {
-
-            .hero h1 {
-                font-size: 38px;
+            .section {
+                padding: 65px 5%;
             }
 
-            .hero-card {
-                width: 100%;
+            .section-heading h2 {
+                font-size: 30px;
             }
 
-            nav {
+            .cta {
+                padding: 50px 5%;
+            }
+
+            .cta-box {
+                padding: 40px 20px;
+            }
+
+            .cta-box h2 {
+                font-size: 27px;
+            }
+
+            footer {
                 flex-direction: column;
-
-                gap: 15px;
+                gap: 10px;
+                text-align: center;
             }
-
-            .nav-links a {
-                margin-left: 10px;
-
-                font-size: 16px;
-            }
-
         }
-
     </style>
-
 </head>
 
-
 <body>
-
 
 <!-- ================= NAVBAR ================= -->
 
 <nav>
 
-    <div class="logo">
-        CareerPath AI
-    </div>
+    <a href="{% url 'home' %}" class="logo">
+
+        <div class="logo-icon">
+            ✦
+        </div>
+
+        CareerPath <span>AI</span>
+
+    </a>
 
     <div class="nav-links">
 
@@ -411,12 +816,12 @@
             Home
         </a>
 
-        <a href="{% url 'login' %}">
+        <a href="{% url 'login' %}" class="nav-login">
             Login
         </a>
 
-        <a href="{% url 'register' %}">
-            Register
+        <a href="{% url 'register' %}" class="nav-register">
+            Get Started
         </a>
 
     </div>
@@ -428,71 +833,163 @@
 
 <section class="hero">
 
-
     <div class="hero-content">
 
+        <div class="badge">
+            ✨ Smart Career Guidance Platform
+        </div>
+
         <h1>
-            CareerPath AI
+            Turn Your Resume Into Your
+            <span>Career Roadmap.</span>
         </h1>
 
-        <h2>
-            Build Your Career with AI-Powered Guidance
-        </h2>
+        <p class="hero-description">
 
-        <p>
-            Upload your resume, analyze your skills,
-            discover your skill gaps, find suitable job
-            opportunities and get a personalized learning roadmap.
+            CareerPath AI analyzes your resume, identifies your
+            strengths and skill gaps, recommends suitable career
+            opportunities, and creates a personalized learning path
+            to help you move forward.
+
         </p>
 
+        <div class="hero-buttons">
 
-        <a
-            href="{% url 'register' %}"
-            class="btn"
-        >
-            Get Started
-        </a>
+            <a
+                href="{% url 'register' %}"
+                class="btn btn-primary"
+            >
+                Start Your Career Journey →
+            </a>
 
+            <a
+                href="{% url 'login' %}"
+                class="btn btn-outline"
+            >
+                Sign In
+            </a>
 
-        <a
-            href="{% url 'login' %}"
-            class="btn btn-secondary"
-        >
-            Login
-        </a>
+        </div>
+
+        <div class="trust-line">
+
+            <span class="trust-icon">✓</span>
+
+            Resume analysis • Skill matching • Career roadmap
+
+        </div>
 
     </div>
 
 
-    <div class="hero-card">
+    <!-- HERO DASHBOARD PREVIEW -->
 
-        <h3>
-            🚀 Your Career Journey
-        </h3>
+    <div class="hero-visual">
 
+        <div class="dashboard-card">
 
-        <div class="step">
-            📄 Upload Resume
-        </div>
+            <div class="card-top">
 
+                <div class="card-title">
+                    Career Readiness
+                </div>
 
-        <div class="step">
-            🤖 AI Resume Analysis
-        </div>
+                <div class="online">
+                    ● Analysis Complete
+                </div>
 
-
-        <div class="step">
-            🎯 Skill Gap Analysis
-        </div>
+            </div>
 
 
-        <div class="step">
-            💼 Job Recommendations
-        </div>
+            <div class="score-area">
+
+                <div class="score-circle">
+
+                    <div class="score-inner">
+
+                        <div class="score-number">
+                            78%
+                        </div>
+
+                        <div class="score-label">
+                            Ready
+                        </div>
+
+                    </div>
+
+                </div>
 
 
-        <div class="step">
-            📚 Learning Roadmap
+                <div class="score-text">
+
+                    <h3>
+                        Data Analyst
+                    </h3>
+
+                    <p>
+                        Your current skills match most
+                        requirements for this role.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-items">
+
+                <div class="mini-item">
+
+                    <div class="mini-icon">
+                        ✓
+                    </div>
+
+                    <strong>
+                        8
+                    </strong>
+
+                    <small>
+                        Matched Skills
+                    </small>
+
+                </div>
+
+
+                <div class="mini-item">
+
+                    <div class="mini-icon">
+                        ⚡
+                    </div>
+
+                    <strong>
+                        3
+                    </strong>
+
+                    <small>
+                        Skill Gaps
+                    </small>
+
+                </div>
+
+
+                <div class="mini-item">
+
+                    <div class="mini-icon">
+                        📚
+                    </div>
+
+                    <strong>
+                        6
+                    </strong>
+
+                    <small>
+                        Roadmap Steps
+                    </small>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
@@ -502,28 +999,35 @@
 
 <!-- ================= FEATURES ================= -->
 
-<section class="features">
+<section class="section">
 
-    <h2>
-        What CareerPath AI Offers
-    </h2>
+    <div class="section-heading">
 
-    <p>
-        Everything you need to understand and improve your career readiness.
-    </p>
+        <div class="section-label">
+            Platform Features
+        </div>
+
+        <h2>
+            Everything You Need to Plan Your Career
+        </h2>
+
+        <p>
+            From resume analysis to personalized learning,
+            CareerPath AI brings your career journey into one platform.
+        </p>
+
+    </div>
 
 
     <div class="feature-container">
 
-
-        <!-- 1. RESUME ANALYSIS -->
 
         <a
             href="{% url 'upload_resume' %}"
             class="feature-card"
         >
 
-            <div class="icon">
+            <div class="feature-icon">
                 📄
             </div>
 
@@ -532,22 +1036,23 @@
             </h3>
 
             <p>
-                Upload your resume and extract important
-                information such as skills, education,
-                experience, projects and certifications.
+                Extract skills, education, experience,
+                projects and certifications from your resume.
             </p>
+
+            <span class="feature-link">
+                Analyze Resume →
+            </span>
 
         </a>
 
-
-        <!-- 2. SKILL GAP ANALYSIS -->
 
         <a
             href="{% url 'skill_gap_analysis' %}"
             class="feature-card"
         >
 
-            <div class="icon">
+            <div class="feature-icon">
                 🎯
             </div>
 
@@ -557,21 +1062,22 @@
 
             <p>
                 Compare your current skills with the
-                skills required for your selected career role
-                and calculate your readiness score.
+                requirements of your target career role.
             </p>
+
+            <span class="feature-link">
+                Check Skill Gap →
+            </span>
 
         </a>
 
-
-        <!-- 3. JOB RECOMMENDATIONS -->
 
         <a
             href="{% url 'job_recommendations' %}"
             class="feature-card"
         >
 
-            <div class="icon">
+            <div class="feature-icon">
                 💼
             </div>
 
@@ -580,21 +1086,23 @@
             </h3>
 
             <p>
-                Discover job opportunities that match
-                your skills and target career role.
+                Find suitable opportunities based on
+                your skills and selected career direction.
             </p>
+
+            <span class="feature-link">
+                Explore Jobs →
+            </span>
 
         </a>
 
-
-        <!-- 4. LEARNING ROADMAP -->
 
         <a
             href="{% url 'learning_roadmap' %}"
             class="feature-card"
         >
 
-            <div class="icon">
+            <div class="feature-icon">
                 📚
             </div>
 
@@ -603,21 +1111,23 @@
             </h3>
 
             <p>
-                Get a personalized learning roadmap based
-                on the skills you are missing.
+                Follow a structured learning path based
+                on the skills you need to improve.
             </p>
+
+            <span class="feature-link">
+                View Roadmap →
+            </span>
 
         </a>
 
-
-        <!-- 5. READINESS SCORE -->
 
         <a
             href="{% url 'skill_gap_analysis' %}"
             class="feature-card"
         >
 
-            <div class="icon">
+            <div class="feature-icon">
                 📊
             </div>
 
@@ -626,21 +1136,23 @@
             </h3>
 
             <p>
-                Understand how prepared you are for your
-                selected career role through a percentage score.
+                Understand your career readiness through
+                a clear percentage-based skill score.
             </p>
+
+            <span class="feature-link">
+                Check Score →
+            </span>
 
         </a>
 
-
-        <!-- 6. CAREER GUIDANCE -->
 
         <a
             href="{% url 'select_role' %}"
             class="feature-card"
         >
 
-            <div class="icon">
+            <div class="feature-icon">
                 🎓
             </div>
 
@@ -649,12 +1161,15 @@
             </h3>
 
             <p>
-                Select from multiple career roles and
-                receive role-specific skill requirements.
+                Select your target role and understand
+                the skills needed to move toward it.
             </p>
 
-        </a>
+            <span class="feature-link">
+                Choose Career →
+            </span>
 
+        </a>
 
     </div>
 
@@ -663,11 +1178,24 @@
 
 <!-- ================= HOW IT WORKS ================= -->
 
-<section class="how-it-works">
+<section class="section how-section">
 
-    <h2>
-        How CareerPath AI Works
-    </h2>
+    <div class="section-heading">
+
+        <div class="section-label">
+            Simple Process
+        </div>
+
+        <h2>
+            How CareerPath AI Works
+        </h2>
+
+        <p>
+            Complete five simple steps to understand
+            your career readiness.
+        </p>
+
+    </div>
 
 
     <div class="steps">
@@ -680,11 +1208,11 @@
             </div>
 
             <h3>
-                Register
+                Create Account
             </h3>
 
             <p>
-                Create your account.
+                Register and create your CareerPath profile.
             </p>
 
         </div>
@@ -701,7 +1229,7 @@
             </h3>
 
             <p>
-                Upload your PDF resume.
+                Upload your PDF resume for analysis.
             </p>
 
         </div>
@@ -714,11 +1242,11 @@
             </div>
 
             <h3>
-                Select Role
+                Select Career
             </h3>
 
             <p>
-                Choose your target career.
+                Choose the career role you want to target.
             </p>
 
         </div>
@@ -731,11 +1259,11 @@
             </div>
 
             <h3>
-                Analyze
+                Analyze Skills
             </h3>
 
             <p>
-                Check your skills and gaps.
+                Discover matched skills and skill gaps.
             </p>
 
         </div>
@@ -748,15 +1276,41 @@
             </div>
 
             <h3>
-                Improve
+                Follow Roadmap
             </h3>
 
             <p>
-                Follow your learning roadmap.
+                Improve your missing skills step by step.
             </p>
 
         </div>
 
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <div class="cta-box">
+
+        <h2>
+            Ready to Discover Your Career Path?
+        </h2>
+
+        <p>
+            Upload your resume, understand your skill gaps,
+            and take the next step toward your target career.
+        </p>
+
+        <a
+            href="{% url 'register' %}"
+            class="cta-button"
+        >
+            Get Started with CareerPath AI →
+        </a>
 
     </div>
 
@@ -767,14 +1321,15 @@
 
 <footer>
 
+    <div class="footer-brand">
+        CareerPath <span>AI</span>
+    </div>
+
     <p>
-        © 2026 CareerPath AI |
-        AI-Powered Career Recommendation System
+        © 2026 CareerPath AI · AI-Powered Career Recommendation System
     </p>
 
 </footer>
 
-
 </body>
-
 </html>

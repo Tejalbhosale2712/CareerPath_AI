@@ -5,19 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register - CareerPath AI</title>
+    <title>Create Account | CareerPath AI</title>
 
     <style>
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
+            font-family: Inter, Arial, sans-serif;
             min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    #dbeafe 0,
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    #e0e7ff 0,
+                    transparent 30%
+                ),
+                #f8fafc;
+
+            color: #0f172a;
+
             display: flex;
             flex-direction: column;
         }
@@ -25,120 +41,329 @@
         /* ================= NAVBAR ================= */
 
         .navbar {
-            background: #1e3a8a;
-            color: white;
-            padding: 18px 6%;
+            height: 76px;
+
+            padding: 0 7%;
+
+            background: rgba(255,255,255,0.95);
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            justify-content: space-between;
+
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .logo {
-            font-size: 27px;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: #0f172a;
+
+            font-size: 22px;
+            font-weight: 800;
+
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: #2563eb;
         }
 
         .home-link {
-            color: white;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.12);
-            padding: 9px 16px;
-            border-radius: 7px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 10px 17px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            color: #475569;
+
             font-size: 14px;
+            font-weight: 700;
+
+            text-decoration: none;
+
+            transition: 0.25s;
         }
 
         .home-link:hover {
-            background: rgba(255, 255, 255, 0.22);
+            border-color: #2563eb;
+            color: #2563eb;
+            background: #eff6ff;
         }
 
         /* ================= MAIN ================= */
 
         .main {
             flex: 1;
+
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 45px 20px;
+            justify-content: center;
+
+            padding: 55px 20px;
         }
 
-        .container {
+        .register-wrapper {
             width: 100%;
-            max-width: 450px;
+            max-width: 1050px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
             background: white;
-            padding: 38px;
-            border-radius: 18px;
-            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px rgba(15,23,42,0.10);
         }
 
-        /* ================= HEADER ================= */
+        /* ================= LEFT PANEL ================= */
 
-        .header {
-            text-align: center;
-            margin-bottom: 28px;
+        .info-panel {
+            padding: 50px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #1d4ed8,
+                    #4338ca
+                );
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
         }
 
-        .icon {
-            width: 65px;
-            height: 65px;
-            margin: 0 auto 15px;
-            background: #eff6ff;
+        .info-panel::before {
+            content: "";
+
+            position: absolute;
+
+            width: 270px;
+            height: 270px;
+
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
+
+            background: rgba(255,255,255,0.08);
+
+            top: -110px;
+            right: -90px;
         }
 
-        h2 {
-            margin: 0 0 10px;
-            color: #1e3a8a;
-            font-size: 27px;
+        .info-panel::after {
+            content: "";
+
+            position: absolute;
+
+            width: 190px;
+            height: 190px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.06);
+
+            bottom: -90px;
+            left: -60px;
         }
 
-        .subtitle {
-            margin: 0;
-            color: #64748b;
+        .info-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-badge {
+            display: inline-block;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            background: rgba(255,255,255,0.13);
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 25px;
+        }
+
+        .info-panel h1 {
+            font-size: 38px;
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+        }
+
+        .info-panel h1 span {
+            color: #bfdbfe;
+        }
+
+        .info-description {
+            color: #dbeafe;
+
             font-size: 14px;
-            line-height: 1.5;
+
+            line-height: 1.7;
+
+            margin-bottom: 30px;
+        }
+
+        /* ================= BENEFITS ================= */
+
+        .benefit {
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 17px;
+        }
+
+        .benefit-icon {
+            width: 36px;
+            height: 36px;
+
+            flex-shrink: 0;
+
+            border-radius: 9px;
+
+            background: rgba(255,255,255,0.12);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+        }
+
+        .benefit span {
+            color: #eff6ff;
+
+            font-size: 13px;
+        }
+
+        /* ================= FORM PANEL ================= */
+
+        .form-panel {
+            padding: 45px 50px;
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+        }
+
+        .form-header h2 {
+            font-size: 30px;
+
+            color: #0f172a;
+
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #64748b;
+
+            font-size: 14px;
         }
 
         /* ================= FORM ================= */
 
         form p {
-            margin: 0 0 18px;
+            margin: 0 0 17px;
         }
 
         label {
             display: block;
-            font-weight: bold;
+
             color: #334155;
-            margin-bottom: 8px;
-            font-size: 14px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
         }
 
         input {
             width: 100%;
-            padding: 13px 14px;
+
+            padding: 12px 14px;
+
             border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 15px;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: #0f172a;
+
+            font-size: 14px;
+
             outline: none;
-            transition: 0.3s;
+
+            transition: 0.25s;
         }
 
         input:focus {
             border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+
+            box-shadow:
+                0 0 0 3px rgba(37,99,235,0.10);
+        }
+
+        input::placeholder {
+            color: #94a3b8;
         }
 
         /* ================= HELP TEXT ================= */
 
         .helptext {
             display: block;
+
+            margin-top: 5px;
+
             color: #64748b;
-            font-size: 12px;
-            margin-top: 6px;
+
+            font-size: 11px;
+
             line-height: 1.5;
         }
 
@@ -150,126 +375,333 @@
 
         .errorlist {
             color: #dc2626;
-            font-size: 13px;
-            margin: 5px 0 10px;
+
+            font-size: 12px;
+
+            margin: 5px 0 8px;
+
             padding-left: 18px;
         }
 
         /* ================= BUTTON ================= */
 
-        button {
+        .register-button {
             width: 100%;
-            padding: 14px;
-            background: #2563eb;
-            color: white;
+
             border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: 0.3s;
+
+            padding: 14px;
+
             margin-top: 5px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px rgba(37,99,235,0.20);
+
+            transition: 0.25s;
         }
 
-        button:hover {
-            background: #1d4ed8;
+        .register-button:hover {
             transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(37,99,235,0.27);
+        }
+
+        /* ================= DIVIDER ================= */
+
+        .divider {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 23px 0;
+        }
+
+        .divider-line {
+            height: 1px;
+
+            flex: 1;
+
+            background: #e2e8f0;
+        }
+
+        .divider span {
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
         }
 
         /* ================= LOGIN ================= */
 
-        .login {
+        .login-text {
             text-align: center;
-            margin-top: 25px;
+
             color: #64748b;
-            font-size: 14px;
+
+            font-size: 13px;
         }
 
-        .login a {
+        .login-text a {
             color: #2563eb;
+
+            font-weight: 800;
+
             text-decoration: none;
-            font-weight: bold;
         }
 
-        .login a:hover {
+        .login-text a:hover {
             text-decoration: underline;
+        }
+
+        /* ================= SECURITY ================= */
+
+        .security {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 6px;
+
+            margin-top: 20px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
         }
 
         /* ================= FOOTER ================= */
 
         .footer {
+            padding: 22px;
+
             text-align: center;
+
             color: #64748b;
-            padding: 20px;
-            font-size: 13px;
+
+            font-size: 12px;
         }
 
         /* ================= RESPONSIVE ================= */
 
+        @media (max-width: 850px) {
+
+            .register-wrapper {
+                grid-template-columns: 1fr;
+
+                max-width: 520px;
+            }
+
+            .info-panel {
+                padding: 35px;
+            }
+
+            .info-panel h1 {
+                font-size: 30px;
+            }
+
+            .form-panel {
+                padding: 35px;
+            }
+        }
+
         @media (max-width: 600px) {
 
             .navbar {
+                height: auto;
+
                 padding: 15px 20px;
             }
 
             .logo {
-                font-size: 23px;
+                font-size: 19px;
             }
 
-            .container {
-                padding: 28px 22px;
+            .logo-icon {
+                width: 36px;
+                height: 36px;
             }
 
-            h2 {
-                font-size: 24px;
+            .home-link {
+                padding: 8px 12px;
+
+                font-size: 12px;
+            }
+
+            .main {
+                padding: 35px 15px;
+            }
+
+            .info-panel {
+                padding: 30px 25px;
+            }
+
+            .form-panel {
+                padding: 30px 22px;
+            }
+
+            .form-header h2 {
+                font-size: 26px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
 
-    <div class="navbar">
+<!-- ================= NAVBAR ================= -->
 
-        <div class="logo">
-            CareerPath AI
+<div class="navbar">
+
+    <a href="{% url 'home' %}" class="logo">
+
+        <div class="logo-icon">
+            ✦
         </div>
 
-        <a href="{% url 'home' %}" class="home-link">
-            🏠 Home
-        </a>
+        CareerPath <span>AI</span>
 
-    </div>
+    </a>
 
 
-    <!-- ================= MAIN ================= -->
+    <a href="{% url 'home' %}" class="home-link">
+        ← Home
+    </a>
 
-    <div class="main">
+</div>
 
-        <div class="container">
 
-            <!-- Header -->
+<!-- ================= MAIN ================= -->
 
-            <div class="header">
+<div class="main">
 
-                <div class="icon">
-                    📝
+    <div class="register-wrapper">
+
+
+        <!-- ================= LEFT INFO ================= -->
+
+        <div class="info-panel">
+
+            <div class="info-content">
+
+                <div class="info-badge">
+                    ✨ Start Your Career Journey
                 </div>
 
+                <h1>
+                    Build your future with
+                    <span>CareerPath AI.</span>
+                </h1>
+
+                <p class="info-description">
+
+                    Create your account and get personalized
+                    insights into your skills, career readiness,
+                    job opportunities and learning path.
+
+                </p>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        📄
+                    </div>
+
+                    <span>
+                        Upload and analyze your resume
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        🎯
+                    </div>
+
+                    <span>
+                        Discover your career skill gaps
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        💼
+                    </div>
+
+                    <span>
+                        Find career opportunities matching your skills
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        📚
+                    </div>
+
+                    <span>
+                        Get a personalized learning roadmap
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= REGISTER FORM ================= -->
+
+        <div class="form-panel">
+
+            <div class="form-header">
+
                 <h2>
-                    Create Your Account
+                    Create Account
                 </h2>
 
-                <p class="subtitle">
-                    Join CareerPath AI and start building your personalized career journey.
+                <p>
+                    Enter your details to get started.
                 </p>
 
             </div>
 
 
-            <!-- Registration Form -->
+            <!-- ================= FORM ================= -->
 
             <form method="POST">
 
@@ -277,22 +709,50 @@
 
                 {{ form.as_p }}
 
-                <button type="submit">
-                    Create Account →
+
+                <button
+                    type="submit"
+                    class="register-button"
+                >
+                    Create My Account →
                 </button>
 
             </form>
 
 
-            <!-- Login -->
+            <!-- ================= DIVIDER ================= -->
 
-            <div class="login">
+            <div class="divider">
+
+                <div class="divider-line"></div>
+
+                <span>
+                    Already registered?
+                </span>
+
+                <div class="divider-line"></div>
+
+            </div>
+
+
+            <!-- ================= LOGIN ================= -->
+
+            <div class="login-text">
 
                 Already have an account?
 
                 <a href="{% url 'login' %}">
-                    Login here
+                    Sign in
                 </a>
+
+            </div>
+
+
+            <!-- ================= SECURITY ================= -->
+
+            <div class="security">
+
+                🔒 Your account information is securely handled.
 
             </div>
 
@@ -300,14 +760,17 @@
 
     </div>
 
+</div>
 
-    <!-- ================= FOOTER ================= -->
 
-    <div class="footer">
+<!-- ================= FOOTER ================= -->
 
-        © 2026 CareerPath AI | AI-Powered Career Guidance System
+<div class="footer">
 
-    </div>
+    © 2026 CareerPath AI · AI-Powered Career Recommendation System
+
+</div>
+
 
 </body>
 

@@ -4,124 +4,346 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Job Recommendations - CareerPath AI</title>
+    <title>Job Recommendations | CareerPath AI</title>
 
     <style>
 
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #333;
+            background: #f7f9fc;
+            color: #172033;
         }
 
-        /* ================= NAVBAR ================= */
+        a {
+            text-decoration: none;
+        }
 
-        .navbar {
-            background: #1e3a8a;
-            color: white;
-            padding: 18px 6%;
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid #e7ebf2;
+            padding: 28px 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            z-index: 10;
         }
 
-        .logo {
-            font-size: 26px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
             font-weight: bold;
         }
 
-        .welcome {
+        .brand h2 {
+            font-size: 20px;
+        }
+
+        .brand span {
+            color: #2563eb;
+        }
+
+        .nav-title {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin-bottom: 12px;
+        }
+
+        .nav-item {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 13px;
+            padding: 13px 14px;
+            margin-bottom: 5px;
+            border-radius: 11px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .nav-item:hover {
+            background: #f1f5ff;
+            color: #2563eb;
+        }
+
+        .nav-item.active {
+            background: #eef4ff;
+            color: #2563eb;
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile-mini {
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 13px;
+            padding: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .profile-mini strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .profile-mini small {
+            color: #94a3b8;
+            font-size: 11px;
         }
 
         .logout {
-            color: white;
-            text-decoration: none;
-            background: #dc2626;
-            padding: 10px 18px;
-            border-radius: 7px;
+            display: block;
+            text-align: center;
+            padding: 11px;
+            border-radius: 10px;
+            background: #fff1f2;
+            color: #e11d48;
+            font-size: 13px;
             font-weight: bold;
         }
 
-        .logout:hover {
-            background: #b91c1c;
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 30px 40px;
         }
 
-        /* ================= CONTAINER ================= */
 
-        .container {
-            width: 90%;
-            max-width: 1150px;
-            margin: 40px auto;
-        }
+        /* ================= TOPBAR ================= */
 
-        /* ================= PAGE HEADER ================= */
-
-        .page-header {
-            background: white;
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 28px;
         }
 
-        .page-header h1 {
-            margin: 0 0 15px;
-            color: #1e3a8a;
-            font-size: 30px;
+        .topbar h1 {
+            font-size: 27px;
+            margin-bottom: 6px;
         }
 
-        .page-header p {
-            color: #666;
-            margin: 8px 0;
+        .topbar p {
+            color: #7b8798;
+            font-size: 14px;
+        }
+
+        .user-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: linear-gradient(120deg, #172554, #2563eb 65%, #4f46e5);
+            border-radius: 20px;
+            padding: 32px;
+            color: white;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            right: 40px;
+            top: -180px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 750px;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            opacity: 0.75;
+            margin-bottom: 9px;
+        }
+
+        .hero h2 {
+            font-size: 27px;
+            margin-bottom: 9px;
+        }
+
+        .hero p {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.88;
+        }
+
+
+        /* ================= TARGET ROLE ================= */
+
+        .target-card {
+            background: white;
+            border: 1px solid #e7ebf2;
+            border-radius: 15px;
+            padding: 19px 22px;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .target-left {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .target-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 11px;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .target-label {
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            margin-bottom: 5px;
         }
 
         .target-role {
-            display: inline-block;
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 8px 14px;
-            border-radius: 20px;
+            color: #1e293b;
+            font-size: 16px;
             font-weight: bold;
-            margin-top: 5px;
         }
+
+        .result-count {
+            color: #64748b;
+            font-size: 12px;
+            background: #f8fafc;
+            padding: 9px 13px;
+            border-radius: 9px;
+        }
+
 
         /* ================= ERROR ================= */
 
         .error-box {
-            background: #fee2e2;
-            color: #991b1b;
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            border-left: 4px solid #e11d48;
+            color: #9f1239;
             padding: 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            border-left: 5px solid #dc2626;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            line-height: 1.6;
         }
+
+
+        /* ================= JOB GRID ================= */
+
+        .job-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
 
         /* ================= JOB CARD ================= */
 
         .job-card {
             background: white;
-            padding: 30px;
-            border-radius: 14px;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
-            margin-bottom: 25px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #e7ebf2;
+            border-radius: 18px;
+            padding: 24px;
+            transition: 0.25s;
+            position: relative;
         }
 
         .job-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(30, 64, 175, 0.09);
+            border-color: #d7e2ff;
         }
+
 
         /* ================= JOB HEADER ================= */
 
@@ -129,203 +351,332 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 20px;
+            gap: 15px;
+            margin-bottom: 18px;
         }
 
         .job-title {
-            color: #1e3a8a;
-            margin: 0 0 8px;
-            font-size: 23px;
+            font-size: 18px;
+            color: #172554;
+            margin-bottom: 7px;
         }
 
         .company {
-            color: #555;
-            font-size: 16px;
-            margin: 0;
-            font-weight: bold;
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
         }
 
-        /* ================= MATCH SCORE ================= */
+
+        /* ================= MATCH ================= */
 
         .match-box {
+            min-width: 72px;
             text-align: center;
-            min-width: 100px;
+            background: #ecfdf5;
+            border-radius: 12px;
+            padding: 9px 7px;
         }
 
         .match {
-            font-size: 30px;
+            color: #15803d;
+            font-size: 20px;
             font-weight: bold;
-            color: #16a34a;
         }
 
         .match-label {
-            font-size: 12px;
-            color: #777;
-            margin-top: 3px;
+            color: #65a30d;
+            font-size: 9px;
+            font-weight: bold;
+            margin-top: 2px;
         }
+
 
         /* ================= PROGRESS ================= */
 
         .progress-container {
             width: 100%;
-            height: 12px;
-            background: #e5e7eb;
+            height: 8px;
+            background: #e9edf3;
             border-radius: 20px;
             overflow: hidden;
-            margin: 20px 0;
+            margin-bottom: 20px;
         }
 
         .progress-bar {
             height: 100%;
-            background: #16a34a;
-            width: {{ recommendation.match_percentage }}%;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
             border-radius: 20px;
         }
 
-        /* ================= DETAILS ================= */
 
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 20px 0;
+        /* ================= JOB DETAILS ================= */
+
+        .details {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
-        .detail-box {
+        .detail {
             background: #f8fafc;
-            padding: 14px;
+            border: 1px solid #edf0f5;
+            color: #64748b;
+            padding: 8px 11px;
             border-radius: 8px;
-            color: #555;
+            font-size: 11px;
         }
 
-        .detail-box strong {
-            color: #222;
+
+        /* ================= SKILL SECTION ================= */
+
+        .skill-section {
+            margin-top: 18px;
         }
 
-        /* ================= SKILLS ================= */
-
-        .section-title {
-            color: #1e3a8a;
-            margin-top: 25px;
-            margin-bottom: 12px;
+        .skill-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #475569;
+            margin-bottom: 10px;
         }
 
         .skill-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 7px;
         }
 
         .skill {
-            display: inline-block;
-            padding: 9px 14px;
-            border-radius: 20px;
-            color: white;
-            font-size: 14px;
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 10px;
             font-weight: bold;
         }
 
         .matched {
-            background: #16a34a;
+            background: #ecfdf5;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
         }
 
         .missing {
-            background: #dc2626;
+            background: #fff1f2;
+            color: #be123c;
+            border: 1px solid #fecdd3;
         }
 
         .success-message {
             color: #15803d;
+            font-size: 12px;
             font-weight: bold;
         }
 
         .empty-message {
-            color: #777;
+            color: #94a3b8;
+            font-size: 12px;
             font-style: italic;
         }
 
-        /* ================= BUTTON ================= */
 
-        .btn {
-            display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-weight: bold;
-        }
+        /* ================= VIEW JOB ================= */
 
-        .btn:hover {
-            background: #1e40af;
+        .job-footer {
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid #edf0f5;
         }
 
         .view-job {
-            background: #16a34a;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: #2563eb;
+            color: white;
+            padding: 11px 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            transition: 0.25s;
         }
 
         .view-job:hover {
-            background: #15803d;
+            background: #1d4ed8;
+            transform: translateY(-1px);
         }
+
 
         /* ================= NO JOBS ================= */
 
         .empty {
             background: white;
-            padding: 40px 25px;
-            border-radius: 14px;
+            border: 1px solid #e7ebf2;
+            border-radius: 18px;
+            padding: 55px 25px;
             text-align: center;
-            color: #777;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .empty-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #eef4ff;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
         }
 
         .empty h2 {
-            color: #1e3a8a;
+            color: #172554;
+            font-size: 20px;
+            margin-bottom: 9px;
         }
+
+        .empty p {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
 
         /* ================= NAVIGATION ================= */
 
-        .buttons {
+        .navigation {
+            background: white;
+            border: 1px solid #e7ebf2;
+            border-radius: 18px;
+            padding: 24px;
+            margin-top: 22px;
             text-align: center;
-            margin: 35px 0;
         }
 
-        .buttons .btn {
-            margin: 6px;
+        .navigation h3 {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        .navigation p {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 17px;
+            border-radius: 10px;
+            margin: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-purple {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .btn-purple:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: #475569;
+            background: #f1f5f9;
+            color: #475569;
         }
 
         .btn-secondary:hover {
-            background: #334155;
+            background: #e2e8f0;
         }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            color: #9aa5b5;
+            font-size: 11px;
+            padding: 28px 0 5px;
+        }
+
 
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 1050px) {
 
-            .navbar {
-                padding: 15px 20px;
+            .job-list {
+                grid-template-columns: 1fr;
             }
 
-            .logo {
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
+            }
+
+            .brand {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .brand h2,
+            .nav-title,
+            .nav-item span,
+            .profile-mini,
+            .logout {
+                display: none;
+            }
+
+            .nav-item {
+                justify-content: center;
+            }
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 25px 20px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .topbar h1 {
                 font-size: 22px;
             }
 
-            .welcome {
-                gap: 8px;
-                font-size: 13px;
+            .hero {
+                padding: 25px;
             }
 
-            .logout {
-                padding: 8px 12px;
+            .hero h2 {
+                font-size: 22px;
             }
 
-            .container {
-                width: 92%;
-                margin: 25px auto;
+            .target-card {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .job-card {
+                padding: 20px;
             }
 
             .job-header {
@@ -333,21 +684,12 @@
             }
 
             .match-box {
-                text-align: left;
-            }
-
-            .details-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .page-header h1 {
-                font-size: 25px;
+                width: 100%;
             }
 
             .btn {
                 display: block;
-                text-align: center;
-                margin: 10px 0;
+                margin: 8px 0;
             }
 
         }
@@ -359,77 +701,239 @@
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
 
-    <div class="navbar">
+<!-- ================= SIDEBAR ================= -->
 
-        <div class="logo">
-            CareerPath AI
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            C
         </div>
 
-        <div class="welcome">
+        <h2>
+            Career<span>Path</span>
+        </h2>
 
-            <span>
-                Welcome, {{ user.username }}
-            </span>
+    </div>
 
-            <a href="{% url 'logout' %}" class="logout">
-                Logout
-            </a>
 
+    <div class="nav-title">
+        MAIN MENU
+    </div>
+
+
+    <a href="{% url 'dashboard' %}" class="nav-item">
+
+        <div class="nav-icon">⌂</div>
+
+        <span>Dashboard</span>
+
+    </a>
+
+
+    <a href="{% url 'upload_resume' %}" class="nav-item">
+
+        <div class="nav-icon">📄</div>
+
+        <span>Resume Analysis</span>
+
+    </a>
+
+
+    <a href="{% url 'select_role' %}" class="nav-item">
+
+        <div class="nav-icon">🎯</div>
+
+        <span>Career Role</span>
+
+    </a>
+
+
+    <a href="{% url 'skill_gap_analysis' %}" class="nav-item">
+
+        <div class="nav-icon">📊</div>
+
+        <span>Skill Gap</span>
+
+    </a>
+
+
+    <a href="{% url 'job_recommendations' %}" class="nav-item active">
+
+        <div class="nav-icon">💼</div>
+
+        <span>Job Recommendations</span>
+
+    </a>
+
+
+    <a href="{% url 'learning_roadmap' %}" class="nav-item">
+
+        <div class="nav-icon">📚</div>
+
+        <span>Learning Roadmap</span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="profile-mini">
+
+            <div class="avatar">
+                {{ user.username|first|upper }}
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ user.username }}
+                </strong>
+
+                <small>
+                    Career Explorer
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'logout' %}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>
+                Job Recommendations
+            </h1>
+
+            <p>
+                Discover opportunities that match your current skill profile.
+            </p>
+
+        </div>
+
+
+        <div class="user-circle">
+            {{ user.username|first|upper }}
         </div>
 
     </div>
 
 
-    <div class="container">
 
-        {% if error %}
+    {% if error %}
 
-            <!-- ================= ERROR ================= -->
 
-            <div class="page-header">
+        <!-- ================= ERROR ================= -->
 
-                <h1>💼 Job Recommendations</h1>
+        <div class="error-box">
 
-                <div class="error-box">
-                    {{ error }}
+            <strong>⚠️ Recommendations Unavailable</strong>
+
+            <p style="margin-top: 7px;">
+                {{ error }}
+            </p>
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-label">
+                    PERSONALIZED JOB DISCOVERY
+                </div>
+
+                <h2>
+                    Jobs matched to your career goal
+                </h2>
+
+                <p>
+                    CareerPath AI compares your resume skills with available
+                    job requirements and ranks opportunities based on your
+                    overall skill and role match.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= TARGET ROLE ================= -->
+
+        <div class="target-card">
+
+            <div class="target-left">
+
+                <div class="target-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <div class="target-label">
+                        Your Target Career
+                    </div>
+
+                    <div class="target-role">
+                        {{ target_role }}
+                    </div>
+
                 </div>
 
             </div>
 
-        {% else %}
-
-            <!-- ================= PAGE HEADER ================= -->
-
-            <div class="page-header">
-
-                <h1>
-                    💼 Recommended Jobs
-                </h1>
-
-                <p>
-                    Find jobs that best match your skills and career goal.
-                </p>
-
-                <p>
-                    <strong>Target Role:</strong>
-                </p>
-
-                <span class="target-role">
-                    🎯 {{ target_role }}
-                </span>
-
-            </div>
-
-
-            <!-- ================= JOB RECOMMENDATIONS ================= -->
 
             {% if recommendations %}
 
+            <div class="result-count">
+                {{ recommendations|length }} matching opportunities
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- ================= RECOMMENDATIONS ================= -->
+
+        {% if recommendations %}
+
+            <div class="job-list">
+
+
                 {% for recommendation in recommendations %}
 
-                    <div class="job-card">
+                    <article class="job-card">
+
 
                         <!-- JOB HEADER -->
 
@@ -455,12 +959,13 @@
                                 </div>
 
                                 <div class="match-label">
-                                    Job Match
+                                    MATCH
                                 </div>
 
                             </div>
 
                         </div>
+
 
 
                         <!-- PROGRESS -->
@@ -475,165 +980,204 @@
                         </div>
 
 
-                        <!-- JOB DETAILS -->
 
-                        <div class="details-grid">
+                        <!-- DETAILS -->
 
-                            <div class="detail-box">
+                        <div class="details">
 
-                                📍 <strong>Location</strong>
-
-                                <br>
-
-                                {{ recommendation.job.location }}
-
+                            <div class="detail">
+                                📍 {{ recommendation.job.location }}
                             </div>
 
-
-                            <div class="detail-box">
-
-                                💼 <strong>Job Type</strong>
-
-                                <br>
-
-                                {{ recommendation.job.job_type }}
-
+                            <div class="detail">
+                                💼 {{ recommendation.job.job_type }}
                             </div>
 
                         </div>
 
 
-                        <!-- MATCHING SKILLS -->
 
-                        <h3 class="section-title">
-                            ✅ Matching Skills
-                        </h3>
+                        <!-- MATCHED SKILLS -->
 
-                        {% if recommendation.matched_skills %}
+                        <div class="skill-section">
 
-                            <div class="skill-list">
-
-                                {% for skill in recommendation.matched_skills %}
-
-                                    <span class="skill matched">
-                                        ✓ {{ skill }}
-                                    </span>
-
-                                {% endfor %}
-
+                            <div class="skill-title">
+                                ✓ Skills You Match
                             </div>
 
-                        {% else %}
 
-                            <p class="empty-message">
-                                No matching skills found.
-                            </p>
+                            {% if recommendation.matched_skills %}
 
-                        {% endif %}
+                                <div class="skill-list">
+
+                                    {% for skill in recommendation.matched_skills %}
+
+                                        <span class="skill matched">
+                                            ✓ {{ skill }}
+                                        </span>
+
+                                    {% endfor %}
+
+                                </div>
+
+                            {% else %}
+
+                                <p class="empty-message">
+                                    No matching skills found.
+                                </p>
+
+                            {% endif %}
+
+                        </div>
+
 
 
                         <!-- MISSING SKILLS -->
 
-                        <h3 class="section-title">
-                            ⚠️ Skills to Improve
-                        </h3>
+                        <div class="skill-section">
 
-                        {% if recommendation.missing_skills %}
-
-                            <div class="skill-list">
-
-                                {% for skill in recommendation.missing_skills %}
-
-                                    <span class="skill missing">
-                                        + {{ skill }}
-                                    </span>
-
-                                {% endfor %}
-
+                            <div class="skill-title">
+                                + Skills to Improve
                             </div>
 
-                        {% else %}
 
-                            <p class="success-message">
-                                🎉 Excellent! You have all the required skills.
-                            </p>
+                            {% if recommendation.missing_skills %}
 
-                        {% endif %}
+                                <div class="skill-list">
+
+                                    {% for skill in recommendation.missing_skills %}
+
+                                        <span class="skill missing">
+                                            + {{ skill }}
+                                        </span>
+
+                                    {% endfor %}
+
+                                </div>
+
+                            {% else %}
+
+                                <p class="success-message">
+                                    🎉 You have all required skills.
+                                </p>
+
+                            {% endif %}
+
+                        </div>
+
 
 
                         <!-- VIEW JOB -->
 
                         {% if recommendation.job.job_url %}
 
-                            <a href="{{ recommendation.job.job_url|default:'#' }}"
-   class="btn">
-    View Job
-</a>
+                            <div class="job-footer">
+
+                                <a
+                                    href="{{ recommendation.job.job_url }}"
+                                    class="view-job"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+
+                                    View Job Opportunity ↗
+
+                                </a>
+
+                            </div>
 
                         {% endif %}
 
-                    </div>
+
+                    </article>
 
                 {% endfor %}
 
-            {% else %}
-
-                <!-- ================= NO JOBS ================= -->
-
-                <div class="empty">
-
-                    <h2>
-                        🔍 No Suitable Jobs Found
-                    </h2>
-
-                    <p>
-                        Your current skills do not match the available jobs.
-                    </p>
-
-                    <p>
-                        Try improving your missing skills and check again.
-                    </p>
-
-                </div>
-
-            {% endif %}
-
-
-            <!-- ================= NAVIGATION ================= -->
-
-            <div class="buttons">
-
-                <a
-                    href="{% url 'skill_gap_analysis' %}"
-                    class="btn">
-
-                    🎯 Skill Gap Analysis
-
-                </a>
-
-
-                <a
-                    href="{% url 'learning_roadmap' %}"
-                    class="btn">
-
-                    📚 Learning Roadmap
-
-                </a>
-
-
-                <a
-                    href="{% url 'dashboard' %}"
-                    class="btn btn-secondary">
-
-                    🏠 Dashboard
-
-                </a>
 
             </div>
 
+
+        {% else %}
+
+
+            <!-- ================= NO JOBS ================= -->
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🔍
+                </div>
+
+                <h2>
+                    No Suitable Jobs Found
+                </h2>
+
+                <p>
+                    Your current skills do not strongly match the available
+                    opportunities. Improve your missing skills and check again.
+                </p>
+
+            </div>
+
+
         {% endif %}
 
-    </div>
+
+
+        <!-- ================= NAVIGATION ================= -->
+
+        <div class="navigation">
+
+            <h3>
+                🚀 Continue Your Career Journey
+            </h3>
+
+            <p>
+                Improve your skills or explore the next stage of your career plan.
+            </p>
+
+
+            <a
+                href="{% url 'skill_gap_analysis' %}"
+                class="btn btn-primary">
+
+                📊 Skill Gap Analysis
+
+            </a>
+
+
+            <a
+                href="{% url 'learning_roadmap' %}"
+                class="btn btn-purple">
+
+                📚 Learning Roadmap
+
+            </a>
+
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="btn btn-secondary">
+
+                🏠 Dashboard
+
+            </a>
+
+        </div>
+
+
+    {% endif %}
+
+
+
+    <footer>
+
+        © 2026 CareerPath AI · AI-Powered Career Recommendation & Skill Gap Analysis
+
+    </footer>
+
+
+</main>
+
 
 </body>
 

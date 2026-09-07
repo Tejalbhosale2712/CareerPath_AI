@@ -5,305 +5,725 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Select Career Role - CareerPath AI</title>
+    <title>Career Goal | CareerPath AI</title>
 
     <style>
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
+            background: #f7f9fc;
+            color: #172033;
         }
 
-        /* ================= NAVBAR ================= */
+        a {
+            text-decoration: none;
+        }
 
-        .navbar {
-            background: #1e3a8a;
-            color: white;
-            padding: 18px 6%;
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid #e7ebf2;
+            padding: 28px 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            flex-direction: column;
+            z-index: 10;
         }
 
-        .logo {
-            font-size: 27px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
             font-weight: bold;
         }
 
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-            background: rgba(255, 255, 255, 0.12);
-            padding: 9px 15px;
-            border-radius: 7px;
+        .brand h2 {
+            font-size: 20px;
         }
 
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .brand span {
+            color: #2563eb;
         }
+
+        .nav-title {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin-bottom: 12px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
+            margin-bottom: 5px;
+            border-radius: 11px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .nav-item:hover {
+            background: #f1f5ff;
+            color: #2563eb;
+        }
+
+        .nav-item.active {
+            background: #eef4ff;
+            color: #2563eb;
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile-mini {
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 13px;
+            padding: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .profile-mini strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .profile-mini small {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        .logout {
+            display: block;
+            text-align: center;
+            padding: 11px;
+            border-radius: 10px;
+            background: #fff1f2;
+            color: #e11d48;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
 
         /* ================= MAIN ================= */
 
-        .container {
-            width: 90%;
-            max-width: 850px;
-            margin: 55px auto;
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 30px 40px;
         }
 
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 18px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-        }
 
-        /* ================= HEADER ================= */
+        /* ================= TOPBAR ================= */
 
-        .header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 18px;
-            background: #eff6ff;
-            border-radius: 50%;
+        .topbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            font-size: 34px;
+            margin-bottom: 28px;
         }
 
-        h1 {
-            color: #1e3a8a;
-            margin: 0 0 12px;
-            font-size: 30px;
+        .topbar h1 {
+            font-size: 27px;
+            margin-bottom: 6px;
         }
 
-        .subtitle {
-            color: #64748b;
-            font-size: 16px;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: auto;
+        .topbar p {
+            color: #7b8798;
+            font-size: 14px;
         }
 
-        /* ================= INFO ================= */
-
-        .info-box {
-            background: #eff6ff;
-            border-left: 4px solid #2563eb;
-            padding: 16px 18px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            color: #334155;
-            line-height: 1.6;
+        .user-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
 
-        .info-box strong {
-            color: #1e3a8a;
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: linear-gradient(120deg, #172554, #2563eb 65%, #4f46e5);
+            border-radius: 20px;
+            padding: 35px;
+            color: white;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
         }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            right: 50px;
+            top: -160px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            opacity: 0.75;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.88;
+        }
+
+
+        /* ================= CONTENT GRID ================= */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.35fr 0.65fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+
+        /* ================= ROLE CARD ================= */
+
+        .role-card {
+            background: white;
+            border: 1px solid #e7ebf2;
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 25px;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .card-header h3 {
+            font-size: 18px;
+        }
+
+        .card-header p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
 
         /* ================= FORM ================= */
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 22px;
         }
 
         .form-label {
             display: block;
-            font-size: 16px;
+            font-size: 13px;
             font-weight: bold;
             color: #334155;
-            margin-bottom: 10px;
+            margin-bottom: 9px;
         }
 
         .form-control {
             width: 100%;
-            padding: 14px 15px;
-            border: 1px solid #cbd5e1;
-            border-radius: 9px;
-            font-size: 16px;
+            padding: 15px;
+            border: 1px solid #dce2eb;
+            border-radius: 11px;
+            font-size: 14px;
             background: white;
             color: #334155;
             outline: none;
-            transition: 0.3s;
+            transition: 0.25s;
+        }
+
+        .form-control:hover {
+            border-color: #b8c4d6;
         }
 
         .form-control:focus {
             border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.10);
         }
+
 
         /* ================= BUTTON ================= */
 
-        .button-area {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .btn {
-            display: inline-block;
+        .continue-btn {
+            width: 100%;
+            border: none;
             background: #2563eb;
             color: white;
-            border: none;
-            padding: 14px 30px;
-            border-radius: 9px;
-            cursor: pointer;
-            font-size: 16px;
+            padding: 14px;
+            border-radius: 11px;
+            font-size: 14px;
             font-weight: bold;
-            transition: 0.3s;
+            cursor: pointer;
+            transition: 0.25s;
         }
 
-        .btn:hover {
+        .continue-btn:hover {
             background: #1d4ed8;
             transform: translateY(-2px);
         }
 
-        /* ================= STEPS ================= */
 
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 35px;
+        /* ================= SIDE INFO ================= */
+
+        .info-card {
+            background: white;
+            border: 1px solid #e7ebf2;
+            border-radius: 18px;
+            padding: 24px;
         }
 
-        .step {
-            text-align: center;
+        .info-card h3 {
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #eef1f5;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 9px;
+            background: #f1f5ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .info-item span {
+            color: #8a96a8;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+
+        /* ================= JOURNEY ================= */
+
+        .journey {
             background: #f8fafc;
-            padding: 18px 10px;
-            border-radius: 10px;
+            border: 1px solid #edf0f5;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 22px;
         }
 
-        .step-number {
-            width: 32px;
-            height: 32px;
-            margin: 0 auto 8px;
+        .journey-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #475569;
+        }
+
+        .journey-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .journey-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .number {
+            width: 27px;
+            height: 27px;
+            border-radius: 50%;
             background: #2563eb;
             color: white;
-            border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            font-size: 11px;
             font-weight: bold;
         }
 
-        .step-title {
-            font-size: 14px;
-            font-weight: bold;
-            color: #334155;
+        .journey-step span {
+            font-size: 12px;
+            color: #64748b;
         }
+
 
         /* ================= FOOTER ================= */
 
-        .footer {
+        footer {
             text-align: center;
-            color: #64748b;
-            padding: 20px;
-            font-size: 14px;
+            color: #9aa5b5;
+            font-size: 11px;
+            padding: 28px 0 10px;
         }
+
 
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 950px) {
 
-            .navbar {
-                padding: 15px 20px;
+            .content-grid {
+                grid-template-columns: 1fr;
             }
 
-            .logo {
-                font-size: 23px;
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
             }
 
-            .container {
-                width: 92%;
-                margin: 35px auto;
+            .brand {
+                justify-content: center;
+                padding: 0;
             }
 
-            .card {
+            .brand h2,
+            .nav-title,
+            .nav-item span,
+            .profile-mini,
+            .logout {
+                display: none;
+            }
+
+            .nav-item {
+                justify-content: center;
+            }
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 25px 20px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .topbar h1 {
+                font-size: 22px;
+            }
+
+            .hero {
                 padding: 25px;
             }
 
-            h1 {
-                font-size: 25px;
+            .hero h2 {
+                font-size: 22px;
             }
 
-            .steps {
-                grid-template-columns: 1fr;
+            .role-card,
+            .info-card {
+                padding: 20px;
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
 
-    <div class="navbar">
+<!-- ================= SIDEBAR ================= -->
 
-        <div class="logo">
-            CareerPath AI
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            C
         </div>
 
-        <a href="{% url 'dashboard' %}" class="nav-link">
-            🏠 Dashboard
-        </a>
+        <h2>
+            Career<span>Path</span>
+        </h2>
 
     </div>
 
 
-    <!-- ================= MAIN ================= -->
+    <div class="nav-title">
+        MAIN MENU
+    </div>
 
-    <div class="container">
 
-        <div class="card">
+    <a href="{% url 'dashboard' %}" class="nav-item">
 
-            <!-- Header -->
+        <div class="nav-icon">⌂</div>
 
-            <div class="header">
+        <span>Dashboard</span>
 
-                <div class="icon">
+    </a>
+
+
+    <a href="{% url 'upload_resume' %}" class="nav-item">
+
+        <div class="nav-icon">📄</div>
+
+        <span>Resume Analysis</span>
+
+    </a>
+
+
+    <a href="{% url 'select_role' %}" class="nav-item active">
+
+        <div class="nav-icon">🎯</div>
+
+        <span>Career Role</span>
+
+    </a>
+
+
+    <a href="{% url 'skill_gap_analysis' %}" class="nav-item">
+
+        <div class="nav-icon">📊</div>
+
+        <span>Skill Gap</span>
+
+    </a>
+
+
+    <a href="{% url 'job_recommendations' %}" class="nav-item">
+
+        <div class="nav-icon">💼</div>
+
+        <span>Job Recommendations</span>
+
+    </a>
+
+
+    <a href="{% url 'learning_roadmap' %}" class="nav-item">
+
+        <div class="nav-icon">📚</div>
+
+        <span>Learning Roadmap</span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="profile-mini">
+
+            <div class="avatar">
+                {{ user.username|first|upper }}
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ user.username }}
+                </strong>
+
+                <small>
+                    Career Explorer
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'logout' %}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>
+                Career Goal
+            </h1>
+
+            <p>
+                Choose the role you want CareerPath AI to help you prepare for.
+            </p>
+
+        </div>
+
+
+        <div class="user-circle">
+            {{ user.username|first|upper }}
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                PERSONALIZED CAREER PLANNING
+            </div>
+
+            <h2>
+                What career do you want to pursue?
+            </h2>
+
+            <p>
+                Select your target job role and CareerPath AI will use it
+                to compare your current skills, identify skill gaps,
+                recommend suitable jobs, and create a learning path.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <div class="content-grid">
+
+
+        <!-- ROLE SELECTION -->
+
+        <section class="role-card">
+
+            <div class="card-header">
+
+                <div class="card-icon">
                     🎯
                 </div>
 
-                <h1>
-                    Select Your Target Career
-                </h1>
+                <div>
 
-                <p class="subtitle">
-                    Choose the job role you want to pursue.
-                    CareerPath AI will compare your resume skills
-                    with the requirements of your selected role.
-                </p>
+                    <h3>
+                        Select Your Target Role
+                    </h3>
 
-            </div>
+                    <p>
+                        This will become your primary career goal.
+                    </p>
 
-
-            <!-- Information -->
-
-            <div class="info-box">
-
-                <strong>Why select a target role?</strong><br>
-
-                Your selected role will be used to generate your
-                <strong>Skill Gap Analysis</strong>,
-                <strong>Job Recommendations</strong>, and
-                <strong>Learning Roadmap</strong>.
+                </div>
 
             </div>
 
-
-            <!-- Form -->
 
             <form method="POST">
 
@@ -312,7 +732,7 @@
                 <div class="form-group">
 
                     <label class="form-label">
-                        💼 Select Target Job Role
+                        💼 Target Job Role
                     </label>
 
                     {{ form.target_role }}
@@ -320,73 +740,193 @@
                 </div>
 
 
-                <div class="button-area">
-
-                    <button type="submit" class="btn">
-                        Continue to Analysis →
-                    </button>
-
-                </div>
+                <button type="submit" class="continue-btn">
+                    Continue to Skill Analysis →
+                </button>
 
             </form>
 
 
-            <!-- Process Steps -->
+            <!-- JOURNEY -->
 
-            <div class="steps">
+            <div class="journey">
 
-                <div class="step">
+                <div class="journey-title">
+                    YOUR CAREER JOURNEY
+                </div>
 
-                    <div class="step-number">
+
+                <div class="journey-step">
+
+                    <div class="number">
                         1
                     </div>
 
-                    <div class="step-title">
-                        Select Career
-                    </div>
+                    <span>
+                        Select your target career
+                    </span>
 
                 </div>
 
 
-                <div class="step">
+                <div class="journey-step">
 
-                    <div class="step-number">
+                    <div class="number">
                         2
                     </div>
 
-                    <div class="step-title">
-                        Analyze Skills
-                    </div>
+                    <span>
+                        Compare your skills
+                    </span>
 
                 </div>
 
 
-                <div class="step">
+                <div class="journey-step">
 
-                    <div class="step-number">
+                    <div class="number">
                         3
                     </div>
 
-                    <div class="step-title">
-                        Get Career Roadmap
+                    <span>
+                        Discover your skill gaps
+                    </span>
+
+                </div>
+
+
+                <div class="journey-step">
+
+                    <div class="number">
+                        4
                     </div>
+
+                    <span>
+                        Build your learning roadmap
+                    </span>
 
                 </div>
 
             </div>
 
-        </div>
+        </section>
+
+
+
+        <!-- INFORMATION -->
+
+        <aside class="info-card">
+
+            <h3>
+                ✨ What happens next?
+            </h3>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <strong>
+                        Skill Gap Analysis
+                    </strong>
+
+                    <span>
+                        See which required skills you already have
+                        and which ones you need to improve.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <strong>
+                        Job Recommendations
+                    </strong>
+
+                    <span>
+                        Find jobs that match your current skills
+                        and selected career direction.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <strong>
+                        Learning Roadmap
+                    </strong>
+
+                    <span>
+                        Get a structured learning path based
+                        on your missing skills.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    🚀
+                </div>
+
+                <div>
+
+                    <strong>
+                        Career Readiness
+                    </strong>
+
+                    <span>
+                        Understand how prepared you are
+                        for your selected role.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
 
     </div>
+
 
 
     <!-- ================= FOOTER ================= -->
 
-    <div class="footer">
+    <footer>
 
-        © 2026 CareerPath AI | AI-Powered Career Guidance System
+        © 2026 CareerPath AI · AI-Powered Career Recommendation & Skill Gap Analysis
 
-    </div>
+    </footer>
+
+
+</main>
+
 
 </body>
 

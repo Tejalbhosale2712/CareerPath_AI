@@ -5,150 +5,361 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Resume Analysis - CareerPath AI</title>
+    <title>AI Resume Insights | CareerPath AI</title>
 
     <style>
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
+            font-family: Inter, Arial, sans-serif;
+            background: #f7f9fc;
+            color: #172033;
         }
 
-        /* ================= NAVBAR ================= */
+        a {
+            text-decoration: none;
+        }
 
-        .navbar {
-            background: #1e3a8a;
-            color: white;
-            padding: 18px 6%;
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid #e7ebf2;
+            padding: 28px 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            flex-direction: column;
+            z-index: 10;
         }
 
-        .logo {
-            font-size: 27px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
             font-weight: bold;
         }
 
-        .welcome {
+        .brand h2 {
+            font-size: 20px;
+            color: #172033;
+        }
+
+        .brand span {
+            color: #2563eb;
+        }
+
+        .nav-title {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin-bottom: 12px;
+        }
+
+        .nav-item {
             display: flex;
             align-items: center;
-            gap: 18px;
-            font-size: 15px;
+            gap: 13px;
+            padding: 13px 14px;
+            margin-bottom: 5px;
+            border-radius: 11px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .nav-item:hover {
+            background: #f1f5ff;
+            color: #2563eb;
+        }
+
+        .nav-item.active {
+            background: #eef4ff;
+            color: #2563eb;
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile-mini {
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 13px;
+            padding: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .profile-mini strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .profile-mini small {
+            color: #94a3b8;
+            font-size: 11px;
         }
 
         .logout {
+            display: block;
+            text-align: center;
+            padding: 11px;
+            border-radius: 10px;
+            background: #fff1f2;
+            color: #e11d48;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 30px 40px;
+        }
+
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .topbar h1 {
+            font-size: 27px;
+            margin-bottom: 6px;
+        }
+
+        .topbar p {
+            color: #7b8798;
+            font-size: 14px;
+        }
+
+        .user-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
             color: white;
-            text-decoration: none;
-            background: #dc2626;
-            padding: 10px 18px;
-            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            transition: 0.3s;
         }
 
-        .logout:hover {
-            background: #b91c1c;
-        }
 
-        /* ================= CONTAINER ================= */
-
-        .container {
-            width: 90%;
-            max-width: 1150px;
-            margin: 40px auto;
-        }
-
-        /* ================= HEADER ================= */
+        /* ================= HERO ================= */
 
         .hero {
-            background: white;
+            background: linear-gradient(
+                120deg,
+                #172554,
+                #2563eb 65%,
+                #4f46e5
+            );
+
+            border-radius: 20px;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
-            margin-bottom: 25px;
-            border-left: 5px solid #2563eb;
+            color: white;
+            margin-bottom: 23px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero h1 {
-            margin: 0 0 10px;
-            color: #1e3a8a;
-            font-size: 30px;
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            right: 60px;
+            top: -150px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            opacity: 0.75;
+            margin-bottom: 9px;
+        }
+
+        .hero h2 {
+            font-size: 26px;
+            margin-bottom: 9px;
         }
 
         .hero p {
-            margin: 8px 0;
-            color: #64748b;
+            font-size: 13px;
+            opacity: 0.87;
+            line-height: 1.6;
         }
 
-        .resume-name {
-            color: #2563eb;
-            font-weight: bold;
-            word-break: break-word;
+        .resume-file {
+            margin-top: 16px;
+            display: inline-block;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
+            padding: 9px 13px;
+            border-radius: 9px;
+            font-size: 11px;
         }
+
 
         /* ================= SUMMARY ================= */
 
         .summary {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-bottom: 25px;
+            gap: 16px;
+            margin-bottom: 23px;
         }
 
         .summary-card {
             background: white;
-            padding: 22px;
-            border-radius: 13px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e8ecf3;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: 0.25s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(15,23,42,0.06);
         }
 
         .summary-icon {
-            font-size: 28px;
-            margin-bottom: 8px;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
         }
 
         .summary-number {
-            font-size: 26px;
-            font-weight: bold;
-            color: #1e3a8a;
+            font-size: 24px;
+            font-weight: 800;
+            color: #172554;
         }
 
         .summary-label {
-            color: #64748b;
-            margin-top: 5px;
-            font-size: 14px;
+            color: #8995a7;
+            font-size: 11px;
+            margin-top: 3px;
         }
+
 
         /* ================= SECTION ================= */
 
         .section {
             background: white;
-            padding: 28px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
-            margin-bottom: 25px;
+            border: 1px solid #e8ecf3;
+            border-radius: 17px;
+            padding: 25px;
+            margin-bottom: 20px;
         }
 
         .section-title {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
 
-        .section-title h2 {
-            color: #1e3a8a;
-            margin: 0;
-            font-size: 22px;
+        .title-left {
+            display: flex;
+            align-items: center;
+            gap: 11px;
         }
+
+        .title-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        .section-title h2 {
+            font-size: 17px;
+        }
+
+        .section-count {
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
 
         /* ================= SKILLS ================= */
 
@@ -159,204 +370,375 @@
         }
 
         .skill {
-            display: inline-block;
+            background: #eef4ff;
+            color: #2563eb;
+            border: 1px solid #dbe7ff;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .skill:hover {
             background: #2563eb;
             color: white;
-            padding: 9px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
         }
+
 
         /* ================= ITEMS ================= */
 
         .item {
             background: #f8fafc;
-            border-left: 4px solid #2563eb;
+            border: 1px solid #edf0f5;
+            border-left: 3px solid #2563eb;
             padding: 14px 16px;
-            margin: 10px 0;
-            border-radius: 8px;
+            margin-bottom: 10px;
+            border-radius: 10px;
             line-height: 1.6;
+            font-size: 13px;
+            color: #475569;
         }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+
+        /* ================= TWO COLUMN ================= */
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
 
         /* ================= EMPTY ================= */
 
         .empty {
             color: #94a3b8;
-            font-style: italic;
             background: #f8fafc;
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 10px;
+            font-size: 12px;
         }
+
 
         /* ================= RESUME TEXT ================= */
 
         .resume-text {
             background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e7ebf2;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             white-space: pre-wrap;
-            text-align: left;
-            max-height: 450px;
+            max-height: 400px;
             overflow-y: auto;
             line-height: 1.7;
-            color: #475569;
-            font-size: 14px;
+            color: #64748b;
+            font-size: 12px;
         }
 
-        /* ================= BUTTONS ================= */
 
-        .buttons {
-            text-align: center;
-            margin: 35px 0 20px;
+        /* ================= ACTIONS ================= */
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 30px 0;
         }
 
         .btn {
             display: inline-block;
+            padding: 12px 18px;
+            border-radius: 10px;
             background: #2563eb;
             color: white;
-            padding: 13px 22px;
-            text-decoration: none;
-            border-radius: 8px;
-            margin: 6px;
-            font-weight: bold;
-            transition: 0.3s;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.25s;
         }
 
         .btn:hover {
-            background: #1e40af;
+            background: #1d4ed8;
             transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: #475569;
+            background: white;
+            color: #475569;
+            border: 1px solid #dfe5ee;
         }
 
         .btn-secondary:hover {
-            background: #334155;
+            background: #f8fafc;
+            color: #2563eb;
         }
+
 
         /* ================= FOOTER ================= */
 
-        .footer {
+        footer {
             text-align: center;
-            color: #64748b;
-            padding: 25px;
-            font-size: 14px;
+            color: #9aa5b5;
+            font-size: 11px;
+            padding: 20px 0;
         }
+
 
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 800px) {
+        @media (max-width: 1000px) {
 
             .summary {
                 grid-template-columns: 1fr;
             }
 
-            .navbar {
-                padding: 15px 20px;
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
             }
 
-            .welcome {
-                gap: 8px;
+            .brand {
+                justify-content: center;
+                padding: 0;
             }
 
-            .container {
-                width: 92%;
+            .brand h2,
+            .nav-title,
+            .nav-item span,
+            .profile-mini,
+            .logout {
+                display: none;
             }
 
-            .hero h1 {
-                font-size: 25px;
+            .nav-item {
+                justify-content: center;
+            }
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 25px 20px;
             }
         }
 
         @media (max-width: 600px) {
 
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
+            .topbar h1 {
+                font-size: 22px;
             }
 
-            .welcome {
-                flex-direction: column;
-            }
-
-            .section,
             .hero {
+                padding: 23px;
+            }
+
+            .hero h2 {
+                font-size: 21px;
+            }
+
+            .section {
                 padding: 20px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
 
-    <div class="navbar">
+<!-- ================= SIDEBAR ================= -->
 
-        <div class="logo">
-            CareerPath AI
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            C
         </div>
 
-        <div class="welcome">
+        <h2>
+            Career<span>Path</span>
+        </h2>
 
-            <span>
-                Welcome, {{ user.username }}
-            </span>
+    </div>
 
-            <a href="{% url 'logout' %}" class="logout">
-                Logout
-            </a>
 
+    <div class="nav-title">
+        MAIN MENU
+    </div>
+
+
+    <a href="{% url 'dashboard' %}" class="nav-item">
+
+        <div class="nav-icon">⌂</div>
+
+        <span>Dashboard</span>
+
+    </a>
+
+
+    <a href="{% url 'upload_resume' %}" class="nav-item active">
+
+        <div class="nav-icon">📄</div>
+
+        <span>Resume Analysis</span>
+
+    </a>
+
+
+    <a href="{% url 'select_role' %}" class="nav-item">
+
+        <div class="nav-icon">🎯</div>
+
+        <span>Career Role</span>
+
+    </a>
+
+
+    <a href="{% url 'skill_gap_analysis' %}" class="nav-item">
+
+        <div class="nav-icon">📊</div>
+
+        <span>Skill Gap</span>
+
+    </a>
+
+
+    <a href="{% url 'job_recommendations' %}" class="nav-item">
+
+        <div class="nav-icon">💼</div>
+
+        <span>Job Recommendations</span>
+
+    </a>
+
+
+    <a href="{% url 'learning_roadmap' %}" class="nav-item">
+
+        <div class="nav-icon">📚</div>
+
+        <span>Learning Roadmap</span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="profile-mini">
+
+            <div class="avatar">
+                {{ user.username|first|upper }}
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ user.username }}
+                </strong>
+
+                <small>
+                    Career Explorer
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'logout' %}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>
+                AI Resume Insights
+            </h1>
+
+            <p>
+                Here's what CareerPath AI found in your resume.
+            </p>
+
+        </div>
+
+
+        <div class="user-circle">
+            {{ user.username|first|upper }}
         </div>
 
     </div>
 
 
-    <!-- ================= MAIN ================= -->
 
-    <div class="container">
+    <!-- ================= HERO ================= -->
 
+    <section class="hero">
 
-        <!-- Resume Header -->
+        <div class="hero-content">
 
-        <div class="hero">
+            <div class="hero-label">
+                AI-POWERED RESUME ANALYSIS
+            </div>
 
-            <h1>
-                🤖 AI Resume Analysis
-            </h1>
-
-            <p>
-                Your resume has been analyzed using CareerPath AI.
-            </p>
+            <h2>
+                Your resume has been analyzed successfully.
+            </h2>
 
             <p>
-                <strong>Resume:</strong>
-                <span class="resume-name">
-                    {{ resume.file.name }}
-                </span>
+                We extracted important career information from your resume
+                to help you understand your current profile and prepare
+                for your target career.
             </p>
 
-            <p>
-                <strong>Uploaded:</strong>
-                {{ resume.uploaded_at }}
-            </p>
+            <div class="resume-file">
+                📄 {{ resume.file.name }}
+            </div>
 
         </div>
 
+    </section>
 
-        <!-- ================= SUMMARY ================= -->
 
-        <div class="summary">
 
-            <div class="summary-card">
+    <!-- ================= SUMMARY ================= -->
 
-                <div class="summary-icon">
-                    🛠️
-                </div>
+    <div class="summary">
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🛠️
+            </div>
+
+            <div>
 
                 <div class="summary-number">
                     {{ skills|length }}
@@ -368,12 +750,16 @@
 
             </div>
 
+        </div>
 
-            <div class="summary-card">
 
-                <div class="summary-icon">
-                    🎓
-                </div>
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🎓
+            </div>
+
+            <div>
 
                 <div class="summary-number">
                     {{ education|length }}
@@ -385,12 +771,16 @@
 
             </div>
 
+        </div>
 
-            <div class="summary-card">
 
-                <div class="summary-icon">
-                    📁
-                </div>
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🚀
+            </div>
+
+            <div>
 
                 <div class="summary-number">
                     {{ projects|length }}
@@ -404,14 +794,21 @@
 
         </div>
 
+    </div>
 
-        <!-- ================= SKILLS ================= -->
 
-        <div class="section">
 
-            <div class="section-title">
+    <!-- ================= SKILLS ================= -->
 
-                <span>🛠️</span>
+    <section class="section">
+
+        <div class="section-title">
+
+            <div class="title-left">
+
+                <div class="title-icon">
+                    🛠️
+                </div>
 
                 <h2>
                     Skills Detected
@@ -419,44 +816,65 @@
 
             </div>
 
-            {% if skills %}
 
-                <div class="skills-container">
-
-                    {% for skill in skills %}
-
-                        <span class="skill">
-                            {{ skill }}
-                        </span>
-
-                    {% endfor %}
-
-                </div>
-
-            {% else %}
-
-                <p class="empty">
-                    No known skills were detected in this resume.
-                </p>
-
-            {% endif %}
+            <span class="section-count">
+                {{ skills|length }} Skills
+            </span>
 
         </div>
 
 
-        <!-- ================= EDUCATION ================= -->
+        {% if skills %}
 
-        <div class="section">
+            <div class="skills-container">
+
+                {% for skill in skills %}
+
+                    <span class="skill">
+                        {{ skill }}
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <p class="empty">
+                No known skills were detected in this resume.
+            </p>
+
+        {% endif %}
+
+    </section>
+
+
+
+    <!-- ================= EDUCATION + EXPERIENCE ================= -->
+
+    <div class="two-column">
+
+
+        <!-- EDUCATION -->
+
+        <section class="section">
 
             <div class="section-title">
 
-                <span>🎓</span>
+                <div class="title-left">
 
-                <h2>
-                    Education
-                </h2>
+                    <div class="title-icon">
+                        🎓
+                    </div>
+
+                    <h2>
+                        Education
+                    </h2>
+
+                </div>
 
             </div>
+
 
             {% if education %}
 
@@ -476,22 +894,30 @@
 
             {% endif %}
 
-        </div>
+        </section>
 
 
-        <!-- ================= EXPERIENCE ================= -->
 
-        <div class="section">
+        <!-- EXPERIENCE -->
+
+        <section class="section">
 
             <div class="section-title">
 
-                <span>💼</span>
+                <div class="title-left">
 
-                <h2>
-                    Experience
-                </h2>
+                    <div class="title-icon">
+                        💼
+                    </div>
+
+                    <h2>
+                        Experience
+                    </h2>
+
+                </div>
 
             </div>
+
 
             {% if experience %}
 
@@ -511,22 +937,37 @@
 
             {% endif %}
 
-        </div>
+        </section>
+
+    </div>
 
 
-        <!-- ================= PROJECTS ================= -->
 
-        <div class="section">
+    <!-- ================= PROJECTS + CERTIFICATIONS ================= -->
+
+    <div class="two-column">
+
+
+        <!-- PROJECTS -->
+
+        <section class="section">
 
             <div class="section-title">
 
-                <span>📁</span>
+                <div class="title-left">
 
-                <h2>
-                    Projects
-                </h2>
+                    <div class="title-icon">
+                        🚀
+                    </div>
+
+                    <h2>
+                        Projects
+                    </h2>
+
+                </div>
 
             </div>
+
 
             {% if projects %}
 
@@ -546,22 +987,30 @@
 
             {% endif %}
 
-        </div>
+        </section>
 
 
-        <!-- ================= CERTIFICATIONS ================= -->
 
-        <div class="section">
+        <!-- CERTIFICATIONS -->
+
+        <section class="section">
 
             <div class="section-title">
 
-                <span>📜</span>
+                <div class="title-left">
 
-                <h2>
-                    Certifications
-                </h2>
+                    <div class="title-icon">
+                        🏆
+                    </div>
+
+                    <h2>
+                        Certifications
+                    </h2>
+
+                </div>
 
             </div>
+
 
             {% if certifications %}
 
@@ -581,16 +1030,23 @@
 
             {% endif %}
 
-        </div>
+        </section>
+
+    </div>
 
 
-        <!-- ================= FULL RESUME TEXT ================= -->
 
-        <div class="section">
+    <!-- ================= EXTRACTED TEXT ================= -->
 
-            <div class="section-title">
+    <section class="section">
 
-                <span>📋</span>
+        <div class="section-title">
+
+            <div class="title-left">
+
+                <div class="title-icon">
+                    📋
+                </div>
 
                 <h2>
                     Extracted Resume Text
@@ -598,42 +1054,61 @@
 
             </div>
 
-            <div class="resume-text">
-                {{ resume_text }}
-            </div>
+            <span class="section-count">
+                Raw Analysis
+            </span>
 
         </div>
 
 
-        <!-- ================= BUTTONS ================= -->
-
-        <div class="buttons">
-
-            <a href="{% url 'upload_resume' %}" class="btn btn-secondary">
-                ← Back to Resume
-            </a>
-
-            <a href="{% url 'dashboard' %}" class="btn">
-                🏠 Dashboard
-            </a>
-
-            <a href="{% url 'skill_gap_analysis' %}" class="btn">
-                📊 Skill Gap Analysis
-            </a>
-
+        <div class="resume-text">
+            {{ resume_text }}
         </div>
 
+    </section>
+
+
+
+    <!-- ================= ACTIONS ================= -->
+
+    <div class="actions">
+
+        <a
+            href="{% url 'upload_resume' %}"
+            class="btn btn-secondary"
+        >
+            ← Upload Another Resume
+        </a>
+
+
+        <a
+            href="{% url 'dashboard' %}"
+            class="btn"
+        >
+            ⌂ Dashboard
+        </a>
+
+
+        <a
+            href="{% url 'skill_gap_analysis' %}"
+            class="btn"
+        >
+            📊 Continue to Skill Gap →
+        </a>
 
     </div>
 
 
-    <!-- ================= FOOTER ================= -->
 
-    <div class="footer">
+    <footer>
 
-        © 2026 CareerPath AI | AI-Powered Career Guidance System
+        © 2026 CareerPath AI · AI-Powered Career Recommendation & Skill Gap Analysis
 
-    </div>
+    </footer>
+
+
+</main>
+
 
 </body>
 

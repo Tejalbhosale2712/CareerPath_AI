@@ -5,323 +5,611 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Upload Resume - CareerPath AI</title>
+    <title>Resume Analysis | CareerPath AI</title>
 
     <style>
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #1f2937;
+            font-family: Inter, Arial, sans-serif;
+            background: #f7f9fc;
+            color: #172033;
         }
 
-        /* ================= NAVBAR ================= */
+        a {
+            text-decoration: none;
+        }
 
-        .navbar {
-            background: #1e3a8a;
-            color: white;
-            padding: 18px 6%;
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 250px;
+            background: #ffffff;
+            border-right: 1px solid #e7ebf2;
+            padding: 28px 18px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            flex-direction: column;
+            z-index: 10;
         }
 
-        .logo {
-            font-size: 27px;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
             font-weight: bold;
         }
 
-        .nav-right {
+        .brand h2 {
+            font-size: 20px;
+            color: #172033;
+        }
+
+        .brand span {
+            color: #2563eb;
+        }
+
+
+        .nav-title {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin-bottom: 12px;
+        }
+
+
+        .nav-item {
             display: flex;
             align-items: center;
-            gap: 18px;
-            font-size: 15px;
+            gap: 13px;
+            padding: 13px 14px;
+            margin-bottom: 5px;
+            border-radius: 11px;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
         }
 
-        .dashboard-link {
-            color: white;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.12);
-            padding: 9px 15px;
-            border-radius: 7px;
+        .nav-item:hover {
+            background: #f1f5ff;
+            color: #2563eb;
         }
 
-        .dashboard-link:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .nav-item.active {
+            background: #eef4ff;
+            color: #2563eb;
         }
 
-        .logout {
-            color: white;
-            text-decoration: none;
-            background: #dc2626;
-            padding: 10px 18px;
-            border-radius: 7px;
-            font-weight: bold;
-        }
-
-        .logout:hover {
-            background: #b91c1c;
-        }
-
-        /* ================= MAIN ================= */
-
-        .container {
-            width: 90%;
-            max-width: 950px;
-            margin: 45px auto;
-        }
-
-        /* ================= HEADER ================= */
-
-        .hero {
-            background: white;
-            padding: 35px;
-            border-radius: 18px;
+        .nav-icon {
+            width: 25px;
             text-align: center;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
-            margin-bottom: 25px;
+            font-size: 17px;
         }
 
-        .icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 15px;
-            background: #eff6ff;
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+
+        .profile-mini {
+            background: #f8fafc;
+            border: 1px solid #edf0f5;
+            border-radius: 13px;
+            padding: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
+            background: #2563eb;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 34px;
+            font-weight: bold;
         }
 
-        .hero h1 {
-            margin: 0 0 12px;
-            color: #1e3a8a;
-            font-size: 30px;
+        .profile-mini strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .profile-mini small {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+
+        .logout {
+            display: block;
+            text-align: center;
+            padding: 11px;
+            border-radius: 10px;
+            background: #fff1f2;
+            color: #e11d48;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 30px 40px;
+        }
+
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            font-size: 27px;
+            margin-bottom: 6px;
+        }
+
+        .topbar p {
+            color: #7b8798;
+            font-size: 14px;
+        }
+
+        .user-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: linear-gradient(
+                120deg,
+                #172554,
+                #2563eb 65%,
+                #4f46e5
+            );
+
+            border-radius: 22px;
+            padding: 32px;
+            color: white;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            right: 50px;
+            top: -130px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+        }
+
+        .hero-label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 27px;
+            margin-bottom: 10px;
         }
 
         .hero p {
-            max-width: 650px;
-            margin: auto;
-            color: #64748b;
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.7;
+            opacity: 0.88;
         }
+
+
+        /* ================= GRID ================= */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 22px;
+        }
+
 
         /* ================= UPLOAD CARD ================= */
 
-        .upload-card {
+        .card {
             background: white;
-            padding: 35px;
-            border-radius: 18px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
-            margin-bottom: 25px;
+            border: 1px solid #e8ecf3;
+            border-radius: 19px;
+            padding: 28px;
+            margin-bottom: 22px;
         }
 
-        .upload-card h2 {
-            color: #1e3a8a;
-            margin-top: 0;
-            text-align: center;
+        .card-header {
+            margin-bottom: 22px;
         }
 
-        .upload-box {
-            margin-top: 25px;
-            padding: 35px 25px;
-            border: 2px dashed #2563eb;
+        .card-header h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .card-header p {
+            color: #8a96a8;
+            font-size: 12px;
+        }
+
+
+        .upload-area {
+            border: 2px dashed #b8c9f5;
             background: #f8fbff;
-            border-radius: 14px;
+            border-radius: 17px;
+            padding: 38px 25px;
             text-align: center;
         }
 
         .upload-icon {
-            font-size: 42px;
-            margin-bottom: 10px;
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 15px;
+            border-radius: 17px;
+            background: #eaf1ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
         }
 
-        .upload-text {
-            color: #475569;
-            margin-bottom: 20px;
+        .upload-area h4 {
+            font-size: 17px;
+            margin-bottom: 7px;
         }
+
+        .upload-area p {
+            color: #8a96a8;
+            font-size: 12px;
+            margin-bottom: 22px;
+        }
+
 
         /* ================= FORM ================= */
 
         form p {
-            margin: 0 0 20px;
+            margin-bottom: 15px;
         }
 
         label {
             display: block;
-            font-weight: bold;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 7px;
             color: #334155;
-            margin-bottom: 8px;
         }
 
         input[type="file"] {
             width: 100%;
             padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
+            border: 1px solid #d8dee9;
+            border-radius: 9px;
             background: white;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         input[type="file"]:focus {
-            outline: 2px solid #2563eb;
+            outline: 2px solid #dbe7ff;
+            border-color: #2563eb;
         }
+
 
         .file-note {
-            color: #64748b;
-            font-size: 13px;
-            margin-top: 10px;
+            color: #94a3b8;
+            font-size: 11px;
+            margin: 12px 0 18px;
         }
 
-        button {
+
+        .upload-btn {
+            border: none;
             background: #2563eb;
             color: white;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 8px;
+            padding: 13px 25px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: 0.3s;
+            transition: 0.25s;
         }
 
-        button:hover {
+        .upload-btn:hover {
             background: #1d4ed8;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37,99,235,0.22);
         }
 
-        /* ================= MESSAGES ================= */
+
+        /* ================= FEATURES ================= */
+
+        .feature {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            padding: 14px 0;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .feature:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #eff6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .feature h4 {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .feature p {
+            font-size: 11px;
+            color: #8a96a8;
+            line-height: 1.5;
+        }
+
+
+        /* ================= MESSAGE ================= */
 
         .message {
-            background: #dcfce7;
-            color: #166534;
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+            color: #047857;
             padding: 13px 16px;
-            border-radius: 8px;
+            border-radius: 11px;
             margin-bottom: 20px;
-            text-align: center;
-            font-weight: bold;
+            font-size: 13px;
+            font-weight: 600;
         }
+
 
         /* ================= RESUME LIST ================= */
 
         .resume-list {
-            background: white;
-            padding: 30px;
-            border-radius: 18px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07);
+            margin-top: 24px;
         }
 
-        .resume-list h2 {
-            margin-top: 0;
-            color: #1e3a8a;
-        }
-
-        .resume-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 20px;
-            margin-top: 15px;
-            border-radius: 10px;
+        .resume-list-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            margin-bottom: 15px;
         }
 
+        .resume-list-header h3 {
+            font-size: 17px;
+        }
+
+        .resume-list-header span {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+
+        .resume-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            background: #ffffff;
+            border: 1px solid #e8ecf3;
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 11px;
+            transition: 0.25s;
+        }
+
+        .resume-card:hover {
+            border-color: #cdd9ff;
+            box-shadow: 0 8px 25px rgba(15,23,42,0.05);
+            transform: translateY(-2px);
+        }
+
+
         .resume-info {
+            display: flex;
+            align-items: center;
+            gap: 13px;
             min-width: 0;
         }
 
+        .pdf-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #fff1f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 18px;
+        }
+
         .resume-name {
-            font-weight: bold;
+            font-size: 13px;
+            font-weight: 700;
             color: #334155;
             word-break: break-word;
         }
 
         .resume-date {
             display: block;
-            color: #64748b;
-            font-size: 13px;
-            margin-top: 7px;
+            color: #94a3b8;
+            font-size: 10px;
+            margin-top: 4px;
         }
 
+
         .analyze-btn {
-            display: inline-block;
-            flex-shrink: 0;
-            background: #2563eb;
-            color: white;
-            padding: 11px 18px;
-            text-decoration: none;
-            border-radius: 7px;
-            font-weight: bold;
-            transition: 0.3s;
+            background: #eef4ff;
+            color: #2563eb;
+            padding: 10px 14px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: 0.25s;
         }
 
         .analyze-btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
+            background: #2563eb;
+            color: white;
         }
 
-        /* ================= BACK BUTTON ================= */
 
-        .back-area {
-            text-align: center;
-            margin: 30px 0;
-        }
+        /* ================= BACK ================= */
 
         .back {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: bold;
+            display: inline-block;
+            margin-top: 5px;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
         }
 
         .back:hover {
-            text-decoration: underline;
+            color: #2563eb;
         }
+
 
         /* ================= FOOTER ================= */
 
-        .footer {
+        footer {
             text-align: center;
-            color: #64748b;
-            padding: 25px;
-            font-size: 13px;
+            color: #9aa5b5;
+            font-size: 11px;
+            padding: 25px 0 5px;
         }
+
 
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 1000px) {
 
-            .navbar {
-                padding: 15px 20px;
-                flex-direction: column;
-                gap: 15px;
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
             }
 
-            .nav-right {
-                flex-direction: column;
-                gap: 10px;
+            .brand {
+                justify-content: center;
+                padding: 0;
             }
 
-            .container {
-                width: 92%;
-                margin: 30px auto;
+            .brand h2,
+            .nav-title,
+            .nav-item span,
+            .profile-mini,
+            .logout {
+                display: none;
             }
 
-            .hero,
-            .upload-card,
-            .resume-list {
+            .nav-item {
+                justify-content: center;
+            }
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
                 padding: 25px 20px;
             }
+        }
 
-            .hero h1 {
-                font-size: 25px;
+
+        @media (max-width: 600px) {
+
+            .topbar h1 {
+                font-size: 22px;
+            }
+
+            .hero {
+                padding: 25px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            .card {
+                padding: 20px;
             }
 
             .resume-card {
@@ -334,96 +622,258 @@
                 text-align: center;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
 
-    <div class="navbar">
+<!-- ================= SIDEBAR ================= -->
 
-        <div class="logo">
-            CareerPath AI
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            C
         </div>
 
-        <div class="nav-right">
-
-            <a href="{% url 'dashboard' %}" class="dashboard-link">
-                🏠 Dashboard
-            </a>
-
-            <span>
-                Welcome, {{ user.username }}
-            </span>
-
-            <a href="{% url 'logout' %}" class="logout">
-                Logout
-            </a>
-
-        </div>
+        <h2>
+            Career<span>Path</span>
+        </h2>
 
     </div>
 
 
-    <!-- ================= MAIN ================= -->
+    <div class="nav-title">
+        MAIN MENU
+    </div>
 
-    <div class="container">
+
+    <a href="{% url 'dashboard' %}" class="nav-item">
+
+        <div class="nav-icon">
+            ⌂
+        </div>
+
+        <span>
+            Dashboard
+        </span>
+
+    </a>
 
 
-        <!-- Header -->
+    <a href="{% url 'upload_resume' %}" class="nav-item active">
 
-        <div class="hero">
+        <div class="nav-icon">
+            📄
+        </div>
 
-            <div class="icon">
-                📄
+        <span>
+            Resume Analysis
+        </span>
+
+    </a>
+
+
+    <a href="{% url 'select_role' %}" class="nav-item">
+
+        <div class="nav-icon">
+            🎯
+        </div>
+
+        <span>
+            Career Role
+        </span>
+
+    </a>
+
+
+    <a href="{% url 'skill_gap_analysis' %}" class="nav-item">
+
+        <div class="nav-icon">
+            📊
+        </div>
+
+        <span>
+            Skill Gap
+        </span>
+
+    </a>
+
+
+    <a href="{% url 'job_recommendations' %}" class="nav-item">
+
+        <div class="nav-icon">
+            💼
+        </div>
+
+        <span>
+            Job Recommendations
+        </span>
+
+    </a>
+
+
+    <a href="{% url 'learning_roadmap' %}" class="nav-item">
+
+        <div class="nav-icon">
+            📚
+        </div>
+
+        <span>
+            Learning Roadmap
+        </span>
+
+    </a>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="profile-mini">
+
+            <div class="avatar">
+                {{ user.username|first|upper }}
             </div>
 
+            <div>
+
+                <strong>
+                    {{ user.username }}
+                </strong>
+
+                <small>
+                    Career Explorer
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <a href="{% url 'logout' %}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div>
+
             <h1>
-                Upload Your Resume
+                Resume Analysis
             </h1>
 
             <p>
-                Upload your resume in PDF format and let CareerPath AI
-                analyze your skills, education, experience, projects
-                and certifications.
+                Upload your resume and let CareerPath AI understand your career profile.
             </p>
 
         </div>
 
 
-        <!-- Success Messages -->
+        <div class="user-circle">
+            {{ user.username|first|upper }}
+        </div>
 
-        {% if messages %}
-
-            {% for message in messages %}
-
-                <div class="message">
-                    ✅ {{ message }}
-                </div>
-
-            {% endfor %}
-
-        {% endif %}
+    </div>
 
 
-        <!-- Upload Section -->
 
-        <div class="upload-card">
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-label">
+                AI-POWERED RESUME INSIGHTS
+            </div>
 
             <h2>
-                📤 Upload Resume
+                Turn your resume into career insights.
             </h2>
 
-            <div class="upload-box">
+            <p>
+                Upload your latest resume and CareerPath AI will analyze
+                your skills, education, experience, projects and certifications
+                to help you understand your career readiness.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- MESSAGES -->
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="message">
+                ✓ {{ message }}
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+
+    <!-- MAIN GRID -->
+
+    <div class="grid">
+
+
+        <!-- UPLOAD -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h3>
+                    Upload your resume
+                </h3>
+
+                <p>
+                    Your resume should be in PDF format.
+                </p>
+
+            </div>
+
+
+            <div class="upload-area">
 
                 <div class="upload-icon">
-                    📑
+                    📄
                 </div>
 
-                <div class="upload-text">
-                    Select your resume PDF file to begin the analysis.
-                </div>
+
+                <h4>
+                    Upload your latest resume
+                </h4>
+
+
+                <p>
+                    Choose a PDF file from your computer to begin.
+                </p>
+
 
                 <form method="POST" enctype="multipart/form-data">
 
@@ -431,14 +881,17 @@
 
                     {{ form.as_p }}
 
+
                     <div class="file-note">
-                        Supported format: PDF
+                        🔒 Supported format: PDF
                     </div>
 
-                    <br>
 
-                    <button type="submit">
-                        Upload Resume →
+                    <button
+                        type="submit"
+                        class="upload-btn"
+                    >
+                        Upload & Analyze Resume →
                     </button>
 
                 </form>
@@ -448,74 +901,218 @@
         </div>
 
 
-        <!-- Uploaded Resumes -->
 
-        {% if resumes %}
+        <!-- WHAT WE ANALYZE -->
 
-            <div class="resume-list">
+        <div class="card">
 
-                <h2>
-                    📚 Your Uploaded Resumes
-                </h2>
+            <div class="card-header">
 
-                <p style="color:#64748b;">
-                    Select a resume below to view its AI analysis.
+                <h3>
+                    What we analyze
+                </h3>
+
+                <p>
+                    CareerPath AI extracts useful information from your resume.
                 </p>
-
-
-                {% for resume in resumes %}
-
-                    <div class="resume-card">
-
-                        <div class="resume-info">
-
-                            <div class="resume-name">
-                                📄 {{ resume.file.name }}
-                            </div>
-
-                            <span class="resume-date">
-                                Uploaded on: {{ resume.uploaded_at }}
-                            </span>
-
-                        </div>
-
-
-                        <a
-                            href="{% url 'analyze_resume' resume.id %}"
-                            class="analyze-btn"
-                        >
-                            🤖 Analyze Resume
-                        </a>
-
-                    </div>
-
-                {% endfor %}
 
             </div>
 
-        {% endif %}
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🧠
+                </div>
+
+                <div>
+
+                    <h4>
+                        Skills
+                    </h4>
+
+                    <p>
+                        Identify technical and professional skills from your resume.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-        <!-- Back -->
+            <div class="feature">
 
-        <div class="back-area">
+                <div class="feature-icon">
+                    🎓
+                </div>
 
-            <a href="{% url 'dashboard' %}" class="back">
-                ← Back to Dashboard
-            </a>
+                <div>
+
+                    <h4>
+                        Education
+                    </h4>
+
+                    <p>
+                        Extract your educational background and qualifications.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <h4>
+                        Experience
+                    </h4>
+
+                    <p>
+                        Identify relevant professional experience.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🚀
+                </div>
+
+                <div>
+
+                    <h4>
+                        Projects
+                    </h4>
+
+                    <p>
+                        Find projects and practical experience mentioned in your resume.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🏆
+                </div>
+
+                <div>
+
+                    <h4>
+                        Certifications
+                    </h4>
+
+                    <p>
+                        Identify certifications and additional qualifications.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
 
-    <!-- ================= FOOTER ================= -->
 
-    <div class="footer">
+    <!-- ================= RESUME LIST ================= -->
 
-        © 2026 CareerPath AI | AI-Powered Career Guidance System
+    {% if resumes %}
 
-    </div>
+        <div class="resume-list">
+
+            <div class="resume-list-header">
+
+                <h3>
+                    Your Resume Library
+                </h3>
+
+                <span>
+                    {{ resumes|length }} uploaded resume{{ resumes|length|pluralize }}
+                </span>
+
+            </div>
+
+
+            {% for resume in resumes %}
+
+                <div class="resume-card">
+
+
+                    <div class="resume-info">
+
+                        <div class="pdf-icon">
+                            📄
+                        </div>
+
+
+                        <div>
+
+                            <div class="resume-name">
+                                {{ resume.file.name }}
+                            </div>
+
+                            <span class="resume-date">
+                                Uploaded on {{ resume.uploaded_at }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="{% url 'analyze_resume' resume.id %}"
+                        class="analyze-btn"
+                    >
+                        🤖 Analyze Resume →
+                    </a>
+
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+
+
+    <!-- BACK -->
+
+    <a
+        href="{% url 'dashboard' %}"
+        class="back"
+    >
+        ← Back to Dashboard
+    </a>
+
+
+
+    <footer>
+
+        © 2026 CareerPath AI · AI-Powered Career Recommendation & Skill Gap Analysis
+
+    </footer>
+
+
+</main>
+
 
 </body>
 
