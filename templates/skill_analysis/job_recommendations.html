@@ -603,6 +603,102 @@
             background: #e2e8f0;
         }
 
+/* ================= JOB PLATFORM SEARCH ================= */
+
+.job-platforms {
+    background: linear-gradient(135deg, #f8fbff, #ffffff);
+    border: 1px solid #e4eaf3;
+    border-radius: 18px;
+    padding: 22px;
+    margin: 22px 0;
+}
+
+.platform-heading h3 {
+    font-size: 19px;
+    color: #172554;
+    margin-bottom: 5px;
+}
+
+.platform-heading p {
+    color: #64748b;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.platform-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    border: 1px solid #e5eaf1;
+    border-radius: 14px;
+    padding: 17px;
+    transition: all 0.25s ease;
+}
+
+.platform-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.10);
+    border-color: #bfdbfe;
+}
+
+.platform-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eff6ff;
+    border-radius: 12px;
+    font-size: 23px;
+}
+
+.platform-content {
+    flex: 1;
+}
+
+.platform-content h4 {
+    font-size: 15px;
+    color: #172033;
+    margin-bottom: 5px;
+}
+
+.platform-content p {
+    color: #64748b;
+    font-size: 11px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.platform-btn {
+    display: inline-block;
+    padding: 8px 13px;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.platform-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+    .platform-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
         /* ================= FOOTER ================= */
 
@@ -923,207 +1019,288 @@
 
 
 
-        <!-- ================= RECOMMENDATIONS ================= -->
+        <!-- ================= JOB PLATFORM SEARCH ================= -->
 
-        {% if recommendations %}
+<div class="job-platforms">
 
-            <div class="job-list">
+    <div class="platform-heading">
+        <h3>🔎 Find More Jobs</h3>
+        <p>Search {{ target_role }} opportunities on popular job platforms.</p>
+    </div>
 
+    <div class="platform-grid">
 
-                {% for recommendation in recommendations %}
+        <!-- LINKEDIN -->
+        <div class="platform-card">
 
-                    <article class="job-card">
-
-
-                        <!-- JOB HEADER -->
-
-                        <div class="job-header">
-
-                            <div>
-
-                                <h2 class="job-title">
-                                    {{ recommendation.job.job_title }}
-                                </h2>
-
-                                <p class="company">
-                                    🏢 {{ recommendation.job.company_name }}
-                                </p>
-
-                            </div>
-
-
-                            <div class="match-box">
-
-                                <div class="match">
-                                    {{ recommendation.match_percentage }}%
-                                </div>
-
-                                <div class="match-label">
-                                    MATCH
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- PROGRESS -->
-
-                        <div class="progress-container">
-
-                            <div
-                                class="progress-bar"
-                                style="width: {{ recommendation.match_percentage }}%;">
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- DETAILS -->
-
-                        <div class="details">
-
-                            <div class="detail">
-                                📍 {{ recommendation.job.location }}
-                            </div>
-
-                            <div class="detail">
-                                💼 {{ recommendation.job.job_type }}
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- MATCHED SKILLS -->
-
-                        <div class="skill-section">
-
-                            <div class="skill-title">
-                                ✓ Skills You Match
-                            </div>
-
-
-                            {% if recommendation.matched_skills %}
-
-                                <div class="skill-list">
-
-                                    {% for skill in recommendation.matched_skills %}
-
-                                        <span class="skill matched">
-                                            ✓ {{ skill }}
-                                        </span>
-
-                                    {% endfor %}
-
-                                </div>
-
-                            {% else %}
-
-                                <p class="empty-message">
-                                    No matching skills found.
-                                </p>
-
-                            {% endif %}
-
-                        </div>
-
-
-
-                        <!-- MISSING SKILLS -->
-
-                        <div class="skill-section">
-
-                            <div class="skill-title">
-                                + Skills to Improve
-                            </div>
-
-
-                            {% if recommendation.missing_skills %}
-
-                                <div class="skill-list">
-
-                                    {% for skill in recommendation.missing_skills %}
-
-                                        <span class="skill missing">
-                                            + {{ skill }}
-                                        </span>
-
-                                    {% endfor %}
-
-                                </div>
-
-                            {% else %}
-
-                                <p class="success-message">
-                                    🎉 You have all required skills.
-                                </p>
-
-                            {% endif %}
-
-                        </div>
-
-
-
-                        <!-- VIEW JOB -->
-
-                        {% if recommendation.job.job_url %}
-
-                            <div class="job-footer">
-
-                                <a
-                                    href="{{ recommendation.job.job_url }}"
-                                    class="view-job"
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-
-                                    View Job Opportunity ↗
-
-                                </a>
-
-                            </div>
-
-                        {% endif %}
-
-
-                    </article>
-
-                {% endfor %}
-
-
+            <div class="platform-icon">
+                💼
             </div>
 
+            <div class="platform-content">
 
-        {% else %}
-
-
-            <!-- ================= NO JOBS ================= -->
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    🔍
-                </div>
-
-                <h2>
-                    No Suitable Jobs Found
-                </h2>
+                <h4>LinkedIn Jobs</h4>
 
                 <p>
-                    Your current skills do not strongly match the available
-                    opportunities. Improve your missing skills and check again.
+                    Explore {{ target_role }} jobs in Pune on LinkedIn.
                 </p>
+
+                <a
+                    href="{{ linkedin_url }}"
+                    class="platform-btn"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Search on LinkedIn ↗
+                </a>
 
             </div>
 
+        </div>
+
+
+        <!-- NAUKRI -->
+        <div class="platform-card">
+
+            <div class="platform-icon">
+                🔎
+            </div>
+
+            <div class="platform-content">
+
+                <h4>Naukri Jobs</h4>
+
+                <p>
+                    Explore {{ target_role }} jobs in Pune on Naukri.
+                </p>
+
+                <a
+                    href="{{ naukri_url }}"
+                    class="platform-btn"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Search on Naukri ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= RECOMMENDATIONS ================= -->
+
+{% if recommendations %}
+
+<div class="job-list">
+
+    {% for recommendation in recommendations %}
+
+    <article class="job-card">
+
+        <!-- JOB HEADER -->
+        <div class="job-header">
+
+            <div>
+                <h2 class="job-title">
+                    {{ recommendation.title }}
+                </h2>
+
+                <p class="company">
+                    🏢 {{ recommendation.company }}
+                </p>
+            </div>
+
+            <div class="match-box">
+                <div class="match">
+                    {{ recommendation.match_percentage }}%
+                </div>
+
+                <div class="match-label">
+                    MATCH
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+        <div class="progress-container">
+            <div
+                class="progress-bar"
+                style="width: {{ recommendation.match_percentage }}%;">
+            </div>
+        </div>
+
+
+        <!-- JOB DETAILS -->
+        <div class="details">
+
+            {% if recommendation.location %}
+            <div class="detail">
+                📍 {{ recommendation.location }}
+            </div>
+            {% endif %}
+
+            {% if recommendation.salary_min or recommendation.salary_max %}
+            <div class="detail">
+                💰 Salary:
+                {% if recommendation.salary_min %}
+                    {{ recommendation.salary_min|floatformat:0 }}
+                {% endif %}
+                {% if recommendation.salary_min and recommendation.salary_max %}
+                    -
+                {% endif %}
+                {% if recommendation.salary_max %}
+                    {{ recommendation.salary_max|floatformat:0 }}
+                {% endif %}
+            </div>
+            {% endif %}
+
+            {% if recommendation.source %}
+            <div class="detail">
+                🌐 {{ recommendation.source }}
+            </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- JOB DESCRIPTION -->
+        {% if recommendation.description %}
+
+        <div class="skill-section">
+
+            <div class="skill-title">
+                📝 Job Description
+            </div>
+
+            <p style="
+                color:#64748b;
+                font-size:12px;
+                line-height:1.6;
+            ">
+                {{ recommendation.description|truncatewords:40 }}
+            </p>
+
+        </div>
 
         {% endif %}
 
 
+        <!-- MATCHED SKILLS -->
+        <div class="skill-section">
 
-        <!-- ================= NAVIGATION ================= -->
+            <div class="skill-title">
+                ✓ Skills You Match
+            </div>
+
+            {% if recommendation.matched_skills %}
+
+            <div class="skill-list">
+
+                {% for skill in recommendation.matched_skills %}
+
+                <span class="skill matched">
+                    ✓ {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p class="empty-message">
+                No matching skills found.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- SKILLS TO IMPROVE -->
+        <div class="skill-section">
+
+            <div class="skill-title">
+                + Skills to Improve
+            </div>
+
+            {% if recommendation.missing_skills %}
+
+            <div class="skill-list">
+
+                {% for skill in recommendation.missing_skills %}
+
+                <span class="skill missing">
+                    + {{ skill }}
+                </span>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p class="success-message">
+                🎉 You have all required skills.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- VIEW JOB -->
+        {% if recommendation.job_url %}
+
+        <div class="job-footer">
+
+            <a
+                href="{{ recommendation.job_url }}"
+                class="view-job"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                View Job Opportunity ↗
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </article>
+
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<!-- NO JOBS -->
+<div class="empty">
+
+    <div class="empty-icon">
+        🔍
+    </div>
+
+    <h2>
+        No Suitable Jobs Found
+    </h2>
+
+    <p>
+        Your current skills do not strongly match the available
+        opportunities. Improve your missing skills and check again.
+    </p>
+
+</div>
+
+{% endif %}
+
+<!-- ================= NAVIGATION ================= -->
 
         <div class="navigation">
 

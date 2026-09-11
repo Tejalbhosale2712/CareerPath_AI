@@ -1,15 +1,19 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
 
 from resume.models import Resume
 from resume.utils import extract_text_from_pdf, extract_skills
 
 from career.models import CareerProfile
-from .models import JobRole, SkillGapAnalysis
 
 from .models import JobRole, SkillGapAnalysis, Job
-from .job_recommendations import calculate_job_match
+from .job_recommendations import (
+    calculate_job_match,
+    calculate_description_match,
+    search_adzuna_jobs,
+    get_linkedin_jobs_url,
+    get_naukri_jobs_url
+)
 from .roadmap import generate_roadmap
 
 
@@ -107,6 +111,7 @@ def skill_gap_analysis(request):
         }
     )
 
+
 @login_required
 def job_recommendations(request):
 
@@ -142,31 +147,100 @@ def job_recommendations(request):
 
     user_skills = extract_skills(resume_text)
 
-    jobs = Job.objects.all()
+    # -------------------------------------------------
+    # REAL JOBS FROM ADZUNA
+    # -------------------------------------------------
+
+    adzuna_jobs = search_adzuna_jobs(
+        target_role=profile.target_role,
+        location="Pune",
+        results_per_page=10
+    )
 
     recommendations = []
 
-    for job in jobs:
+    for job in adzuna_jobs:
 
-        result = calculate_job_match(
+        job_title = job.get(
+            'title',
+            'Job Opportunity'
+        )
+
+        company_data = job.get(
+            'company',
+            {}
+        )
+
+        company_name = company_data.get(
+            'display_name',
+            'Company not specified'
+        )
+
+        location_data = job.get(
+            'location',
+            {}
+        )
+
+        location_name = location_data.get(
+            'display_name',
+            'Location not specified'
+        )
+
+        description = job.get(
+            'description',
+            ''
+        )
+
+        # -------------------------------------------------
+        # CALCULATE JOB MATCH
+        # -------------------------------------------------
+
+        result = calculate_description_match(
             user_skills,
-            job.required_skills,
-            job.job_title,
+            description,
+            job_title,
             profile.target_role
         )
 
-        if result['match_percentage'] >= 40:
+        recommendations.append({
+            'title': job_title,
+            'company': company_name,
+            'location': location_name,
+            'description': description,
+            'salary_min': job.get('salary_min'),
+            'salary_max': job.get('salary_max'),
+            'job_url': job.get('redirect_url'),
+            'match_percentage': result['match_percentage'],
+            'matched_skills': result['matched_skills'],
+            'missing_skills': result['missing_skills'],
+            'source': 'Adzuna'
+        })
 
-            recommendations.append({
-                'job': job,
-                'matched_skills': result['matched_skills'],
-                'missing_skills': result['missing_skills'],
-                'match_percentage': result['match_percentage']
-            })
+    # -------------------------------------------------
+    # SORT JOBS BY MATCH PERCENTAGE
+    # -------------------------------------------------
 
     recommendations.sort(
         key=lambda x: x['match_percentage'],
         reverse=True
+    )
+
+    # -------------------------------------------------
+    # LINKEDIN JOB SEARCH
+    # -------------------------------------------------
+
+    linkedin_url = get_linkedin_jobs_url(
+        profile.target_role,
+        "Pune"
+    )
+
+    # -------------------------------------------------
+    # NAUKRI JOB SEARCH
+    # -------------------------------------------------
+
+    naukri_url = get_naukri_jobs_url(
+        profile.target_role,
+        "Pune"
     )
 
     return render(
@@ -176,8 +250,15 @@ def job_recommendations(request):
             'recommendations': recommendations,
             'target_role': profile.target_role,
             'resume': resume,
+            'user_skills': user_skills,
+
+            # LinkedIn and Naukri
+            'linkedin_url': linkedin_url,
+            'naukri_url': naukri_url,
         }
     )
+
+
 @login_required
 def learning_roadmap(request):
 

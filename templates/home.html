@@ -113,6 +113,20 @@
             background: #1d4ed8;
         }
 
+        .nav-admin {
+            padding: 10px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            color: #475569 !important;
+            background: #f8fafc;
+        }
+
+        .nav-admin:hover {
+            border-color: #2563eb;
+            color: #2563eb !important;
+            background: #eff6ff;
+        }
+
         /* ================= HERO ================= */
 
         .hero {
@@ -818,6 +832,10 @@
 
         <a href="{% url 'login' %}" class="nav-login">
             Login
+        </a>
+
+        <a href="/admin/login/" class="nav-admin">
+            Admin Login
         </a>
 
         <a href="{% url 'register' %}" class="nav-register">
